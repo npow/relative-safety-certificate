@@ -1,0 +1,11 @@
+gymnasium==0.28.1
+safety-gymnasium==0.4.1
+omnisafe==0.5.0
+mujoco==2.3.0
+numpy==1.26.4
+scipy==1.15.3
+scikit-learn==1.7.2
+torch==2.14.1
+pytest
+# install note: safety-gymnasium pins pygame==2.1.0 which does not build on current toolchains;
+# install with an override  pygame>=2.5  (uv pip install --override ov.txt ...), Python 3.10 required.

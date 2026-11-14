@@ -1,0 +1,294 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage[numbers]{natbib}
+\usepackage{graphicx}
+\usepackage[hidelinks]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{assumption}{Assumption}
+\newtheorem{definition}{Definition}
+
+\newcommand{\TV}{\mathrm{TV}}
+\newcommand{\JSD}{\mathrm{JSD}}
+\newcommand{\dA}{d_A}
+\newcommand{\dB}{d_B}
+
+\title{Occupancy-Based Certificates for the Relative Safety of Reinforcement Learning Agents}
+
+\author{Nissan Pow}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Before deploying a reinforcement learning agent $A$ it is common to hold a trusted baseline controller $B$ whose expected episodic constraint cost $J(B)$ has been measured.
+We study what can be said about $J(A)$ from rollouts of $A$ and $B$ alone, without a model of the environment.
+Discretising observations into a finite alphabet on which the per-step cost is defined, we show $J(A)\le J(B)+T\,\TV(d_A,d_B)$, where $d_\pi$ is the occupancy measure of policy $\pi$ and $T$ the horizon. The bound needs no i.i.d.\ assumption and is attained by some cost function for every pair of occupancy measures.
+If the cost is known to be nondecreasing in an ordinal risk level, the bound sharpens to a one-sided Kolmogorov--Smirnov distance on that level, restricted to the thresholds at which cost can begin to rise (plus a small slack for other rises); its finite-sample slack has no $\sqrt K$ term and, with empirical-Bernstein radii, adapts to the small variance of rare-event occupancy.
+We prove that cost labels on the agent's symbols do not help, that the assumption of cost sufficiency cannot be dropped, and that the $K$-dependent sampling term of the total-variation certificate cannot be removed for $T{=}1$ (via closeness-testing lower bounds, leaving an open $\sqrt K$ gap).
+On Constrained CartPole, where the assumptions hold exactly, no finite-sample certificate was violated in 405 evaluations and the monotone empirical-Bernstein certificate at 2000 episodes is 4.3--8.8 cost units (ceiling 200) for agents with realised cost below 0.8, 5 to 11 times below the total-variation certificate.
+On Safety-Gymnasium (PointGoal1 with three training seeds, CarGoal1 with one), on PointGoal1 a generic $k$-means alphabet violates the sufficiency assumption (the cost-aware estimate has median relative error 0.38), whereas an alphabet built from the baseline's own pilot data around the observation window that best predicts cost restores it approximately (0.17); on CarGoal1 the generic alphabet was already adequate; the pilot-selected monotone certificate was never violated in 32 agent-by-seed cells and is below the ceiling of 1000 in all of them, but it remains about 4 to 6 times the realised cost (median per task) and its plug-in version, which is not a guarantee, was violated in 3 of 32. The cost-relevant alphabet, the onset set and the slack are chosen from baseline pilot data by a rule developed on one of these runs.
+A comparison with importance sampling on CartPole shows that range-based importance-sampling confidence bounds are vacuous at horizon 200, although self-normalised point estimates are informative.
+\end{abstract}
+
+\section{Introduction}
+\label{sec:intro}
+
+Constrained reinforcement learning methods such as CPO~\citep{achiam2017cpo} and Lagrangian PPO~\citep{ray2019benchmarking} reduce constraint violations in training, but the resulting policy is evaluated by rolling it out, and a handful of rollouts does not say how its cost relates to that of a controller that is already trusted.
+A common practical situation is the following. An incumbent controller $B$ (a human operator, a legacy controller, or an earlier agent) has a measured expected cost $J(B)$. A new agent $A$ is proposed. We have simulator rollouts of both, and we would like an upper bound on $J(A)$ that holds before $A$ acts in the real system.
+
+This paper studies a family of such bounds and states exactly when each is valid. Our technical tools are elementary; the contributions are the statements, the finite-sample treatment and the measurement of when they are informative:
+\begin{enumerate}
+  \item \textbf{A transfer bound with exact tightness} (Theorem~\ref{thm:main}, Proposition~\ref{prop:tight}). Under a cost-sufficiency assumption, $J(A)-J(B)\le T\,\TV(d_A,d_B)$ with no i.i.d.\ assumption; for fixed $d_A,d_B$ the right-hand side is the supremum over all admissible cost functions.
+  \item \textbf{A sharper bound for monotone costs} (Theorem~\ref{thm:mono}, Proposition~\ref{prop:fsks}). If cost is nondecreasing in an ordinal risk level and can only begin to rise at known onset thresholds, the bound becomes a one-sided Kolmogorov--Smirnov distance on the risk level, whose finite-sample slack has no $\sqrt K$ term and, with empirical-Bernstein radii, is small when the risky occupancy is small.
+  \item \textbf{Limits} (Propositions~\ref{prop:necessary}, \ref{prop:labels}, \ref{prop:lower}): cost sufficiency cannot be dropped, cost labels on the agent's symbols do not help, and a $K$-dependent sampling term is necessary for the total-variation certificate at $T{=}1$, with a $\sqrt K$ gap to our slack.
+  \item \textbf{An empirical study}, including how the alphabet affects the sufficiency assumption, how loose each certificate is, whether it is ever violated, three training seeds on PointGoal1 and one on CarGoal1, and a comparison with importance sampling (Section~\ref{sec:experiments}).
+\end{enumerate}
+We do not claim that the bounds are tight in practice, that they improve on constrained-RL training, or that they remove the need for a cost function: the certificate is cost-agnostic only in the sense that it holds simultaneously for all cost functions in the stated class.
+
+\paragraph{Related work.}
+Bounds on the change in expected return in terms of the total variation distance between policies underlie conservative policy iteration~\citep{kakade2002cpi}, TRPO~\citep{schulman2015trpo} and the cost bounds of CPO~\citep{achiam2017cpo}; these are used to \emph{constrain training updates}. We instead bound the cost of a \emph{finished} agent in terms of the total variation distance between \emph{occupancy measures} that can be estimated from rollouts. High-confidence off-policy evaluation~\citep{thomas2015hcope} also provides confidence bounds on the performance of a policy from data, but from importance-weighted returns of trajectories gathered by other policies; our bound needs no action probabilities, which is the relevant case when the baseline is a human or legacy controller. Shielding~\citep{alshiekh2018shield}, Lyapunov methods~\citep{chow2018lyapunov} and control barrier functions~\citep{cheng2019cbf} give guarantees that depend on a model or on an explicit unsafe set. The closest prior art is not in the safe-RL literature. Bounding the difference in expected cost between two policies by the total variation (or another divergence) between their occupancy measures is the standard argument behind occupancy-matching analyses in imitation learning~\citep{ho2016gail}, and Proposition~\ref{prop:tight} is the variational characterisation of total variation as an integral probability metric~\citep{muller1997ipm}. Universal off-policy evaluation~\citep{chandak2021uno} estimates the whole CDF of the return with simultaneous confidence bands, again by importance sampling and therefore with action probabilities; our Kolmogorov--Smirnov-type quantity is instead computed on the occupancy of a risk level, without action probabilities. Safe policy improvement with baseline bootstrapping~\citep{laroche2019spibb} likewise guarantees performance relative to a baseline policy, but by constraining the learned policy to the baseline where data are scarce, using a model, rather than by certifying a finished agent from occupancy statistics. The elementary inequality in Theorem~\ref{thm:main} is therefore expected, and we claim novelty only for its use as a pre-deployment certificate against a trusted baseline, the episode-level finite-sample slack with an explicit dependence on the alphabet size, and the empirical evaluation of non-vacuousness and of failure of the assumption.
+
+\section{Setting and main bound}
+\label{sec:theory}
+
+\paragraph{Setting.}
+Episodes have a fixed horizon $T$. A discretisation $\phi$ maps each observation to one of $K$ symbols in a finite alphabet $\mathcal Z$; episodes that terminate early are padded with an absorbing symbol so that every episode yields a sequence $z_1,\dots,z_T$. Let $x_i(z)=\frac1T\#\{t:z_t=z\}$ be the per-episode visitation frequency of episode $i$. The \emph{occupancy measure} of a policy $\pi$ is $d_\pi(z)=\mathbb E_\pi[x_i(z)]$. The cost of an episode is $\sum_{t=1}^T c_t$ with $c_t\in[0,1]$ and $J(\pi)=\mathbb E_\pi\sum_t c_t$.
+
+\begin{assumption}[Cost sufficiency]\label{asm:suff}
+There is a function $\bar c:\mathcal Z\to[0,1]$ with $\mathbb E_\pi[c_t\mid z_t=z]=\bar c(z)$ for every policy $\pi\in\{A,B\}$, every $t$ and every $z$ with positive probability. This holds in particular when $c_t$ is a deterministic function of the discretised observation $z_t$.
+\end{assumption}
+
+No other assumption on the dynamics is made: no Markov property, no i.i.d.\ structure over time, no stationarity.
+
+\begin{theorem}[Cost transfer]\label{thm:main}
+Under Assumption~\ref{asm:suff},
+\[
+J(A)-J(B)=T\sum_z\bigl(d_A(z)-d_B(z)\bigr)\bar c(z)\;\le\;T\,\bigl(\max_z\bar c(z)-\min_z\bar c(z)\bigr)\,\TV(d_A,d_B)\;\le\;T\,\TV(d_A,d_B).
+\]
+\end{theorem}
+
+\begin{corollary}[Jensen--Shannon form]\label{cor:jsd}
+$\TV(d_A,d_B)\le\sqrt{2\ln 2\cdot\JSD_{\text{bits}}(d_A,d_B)}$, hence $J(A)\le J(B)+T\sqrt{2\ln2\cdot\JSD_{\text{bits}}(d_A,d_B)}$.
+\end{corollary}
+
+The JSD form is never tighter than the TV form; we include it because JSD is a common divergence for comparing histograms, and we report both in the experiments.
+
+\begin{proposition}[Exact tightness over cost functions]\label{prop:tight}
+For any two occupancy measures $d_A,d_B$ on $\mathcal Z$, $\sup_{\bar c:\mathcal Z\to[0,1]}\sum_z(d_A-d_B)(z)\bar c(z)=\TV(d_A,d_B)$, attained by $\bar c=\mathbf 1\{d_A>d_B\}$.
+\end{proposition}
+
+Proposition~\ref{prop:tight} says that if nothing is known about the cost function except Assumption~\ref{asm:suff} and the range $[0,1]$, the bound of Theorem~\ref{thm:main} cannot be improved: for every pair $(d_A,d_B)$ some admissible cost makes it an equality. It does not say that the bound is tight for the cost function of a particular task.
+
+\begin{theorem}[Monotone-cost transfer]\label{thm:mono}
+Let $b:\mathcal Z\to\{0,\dots,L\}$ be an ordinal \emph{risk level}, $\mathcal T\subseteq\{0,\dots,L-1\}$ a set of \emph{onset thresholds} and $\eta\in[0,1]$, all fixed before any rollout of $A$. Suppose Assumption~\ref{asm:suff} holds with $\bar c=g\circ b$, where $g:\{0,\dots,L\}\to[0,1]$ is nondecreasing and its total rise outside $\mathcal T$ is at most $\eta$: $\sum_{\tau\notin\mathcal T}\bigl(g(\tau+1)-g(\tau)\bigr)\le\eta$. Then
+\[
+J(A)-J(B)\;\le\;T\,\bigl(\mathrm{KS}^+_{\mathcal T}(d_A,d_B)+\eta\,\mathrm{KS}^+_{\mathrm{all}}(d_A,d_B)\bigr),\qquad
+\mathrm{KS}^+_{\mathcal S}(d_A,d_B):=\max_{\tau\in\mathcal S}\bigl[d_A(b>\tau)-d_B(b>\tau)\bigr]_+ ,
+\]
+where $\mathrm{KS}^+_{\mathrm{all}}$ takes the maximum over all thresholds $\{0,\dots,L-1\}$, and $\mathrm{KS}^+_{\mathcal T}\le\mathrm{KS}^+_{\mathrm{all}}\le\TV$. If $\eta=0$ and $\mathrm{KS}^+_{\mathcal T}>0$, the step function $g=\mathbf 1[\,\cdot>\tau^\star]$ at a maximising $\tau^\star\in\mathcal T$ attains the bound.
+\end{theorem}
+
+Theorem~\ref{thm:mono} interpolates between knowing nothing and knowing the cost. With $\mathcal T$ equal to all thresholds it only assumes that cost never decreases with the risk level; with $\mathcal T$ equal to the top threshold and $\eta=0$ it says that the cost is incurred only in the highest risk level, and the bound becomes the excess occupancy of that level. The slack $\eta$ allows a small rise elsewhere at the price of $\eta\,\mathrm{KS}^+_{\mathrm{all}}$. Since $\mathrm{KS}^+_{\mathrm{all}}$ is the distance between the tail functions of the two risk-level distributions and the class of nondecreasing costs is the class that defines first-order stochastic dominance~\citep{shaked2007stochastic,muller2002comparison}, Theorem~\ref{thm:mono} is a quantitative form of stochastic dominance of $A$'s risk level over $B$'s, and $\mathrm{KS}^+_{\mathrm{all}}$ is the integral probability metric generated by monotone step functions. Unlike the TV bound, its finite-sample slack (Proposition~\ref{prop:fsks}) has no $\sqrt K$ term.
+
+\begin{proposition}[Cost sufficiency cannot be dropped]\label{prop:necessary}
+For every $\epsilon\in(0,\tfrac12)$ there are policies $A,B$ on a two-symbol discretisation with $d_A=d_B$ (so $\TV=0$) and $J(A)-J(B)=T(1-2\epsilon)$ when Assumption~\ref{asm:suff} is dropped.
+\end{proposition}
+
+\begin{corollary}[Composition]\label{cor:comp}
+For a third policy $C$ (e.g.\ an intermediate version of the agent), $J(A)\le J(B)+T\,[\TV(d_A,d_C)+\TV(d_C,d_B)]$, with $\TV(d_A,d_C)$ and $\TV(d_C,d_B)$ computable from separate pairs of rollout sets. Total variation satisfies the triangle inequality, so this is never smaller than the direct bound and is useful only when $A$ and $B$ cannot be rolled out in the same simulator.
+\end{corollary}
+
+\paragraph{Finite samples.}
+Let $\hat d_A,\hat d_B$ be the pooled empirical occupancy measures from $n_A$ and $n_B$ independent episodes. Within an episode the symbols are dependent, so we use episodes, not time steps, as the independent units.
+
+\begin{proposition}[Finite-sample certificate]\label{prop:fs}
+Let costs per step lie in $[0,1]$, $\hat J_B$ be the mean cost of the $n_B$ baseline episodes, and
+\[
+s_\delta=\tfrac12\sqrt{K/n_A}+\tfrac12\sqrt{K/n_B}+\sqrt{\tfrac12\bigl(\tfrac1{n_A}+\tfrac1{n_B}\bigr)\ln\tfrac1\delta}.
+\]
+Under Assumption~\ref{asm:suff}, with probability at least $1-2\delta$,
+\[
+J(A)\;\le\;\hat J_B+T\sqrt{\tfrac{\ln(1/\delta)}{2n_B}}+T\bigl(\TV(\hat d_A,\hat d_B)+s_\delta\bigr).
+\]
+\end{proposition}
+
+The sampling term scales as $\sqrt{K/n}$: certifying a close agent needs $n\gg K$ episodes, which is why the alphabet should be small. The cost of $A$ is not used, so the certificate can be computed from unlabeled rollouts of $A$.
+
+\begin{proposition}[Finite-sample monotone certificate]\label{prop:fsks}
+Under the assumptions of Theorem~\ref{thm:mono}, let $\hat d_A,\hat d_B$ be the empirical occupancy measures from $n_A,n_B$ independent episodes, $m=|\mathcal T|$ if $\eta=0$ and $m=L$ otherwise, and $s^{\mathrm{KS}}_\delta=\sqrt{\ln(2m/\delta)/(2n_A)}+\sqrt{\ln(2m/\delta)/(2n_B)}$. With probability at least $1-2\delta$,
+\[
+J(A)\le\hat J_B+T\sqrt{\tfrac{\ln(1/\delta)}{2n_B}}+T\Bigl(\mathrm{KS}^+_{\mathcal T}(\hat d_A,\hat d_B)+s^{\mathrm{KS}}_\delta+\eta\min\{1,\mathrm{KS}^+_{\mathrm{all}}(\hat d_A,\hat d_B)+s^{\mathrm{KS}}_\delta\}\Bigr).
+\]
+\end{proposition}
+
+\begin{proposition}[Variance-adaptive form]\label{prop:eb}
+Under the assumptions of Theorem~\ref{thm:mono}, let $x_i^A(\tau)=\hat d_i^A(b>\tau)$ and $x_i^B(\tau)$ be the per-episode tail fractions, $y_i^B=\text{cost}_i/T$, and for a sample $x\in[0,1]^n$ let $r_\delta(x)=\sqrt{2V_n(x)\ln(2/\delta)/n}+7\ln(2/\delta)/(3(n-1))$ with $V_n$ the unbiased sample variance. Write $u_\tau=\bigl(\bar x^A(\tau)+r_{\delta'}(x^A(\tau))\bigr)-\bigl(\bar x^B(\tau)-r_{\delta'}(x^B(\tau))\bigr)$, with $\delta'=\delta/(2m)$ and $m$ as in Proposition~\ref{prop:fsks}. With probability at least $1-2\delta$,
+\[
+\tfrac1T J(A)\le\bar y^B+r_\delta(y^B)+\max_{\tau\in\mathcal T}[u_\tau]_+ +\eta\min\Bigl\{1,\max_{\tau}[u_\tau]_+\Bigr\},
+\]
+where the last maximum is over all thresholds.
+\end{proposition}
+
+\begin{proposition}[Sample-size lower bound for the TV certificate, $T=1$]\label{prop:lower}
+Let $T=1$, so that an episode is a single symbol, and let a procedure receive $n$ independent samples from each of $d_A,d_B$ on $K$ symbols and output $U$ with $\Pr[U\ge\TV(d_A,d_B)]\ge 2/3$ for every pair $(d_A,d_B)$ (a valid certificate at confidence $2/3$). If, in addition, $\Pr[U\le\epsilon/2]\ge2/3$ whenever $d_A=d_B$ (the certificate is informative for identical policies), then $n\ge c\cdot\max\{K^{2/3}/\epsilon^{4/3},\ \sqrt K/\epsilon^{2}\}$ for a universal constant $c>0$, the second term for $\epsilon=\Omega(K^{-1/4})$.
+\end{proposition}
+
+Proposition~\ref{prop:lower} concerns certificates that upper-bound the total variation distance, i.e.\ the certificate of Theorem~\ref{thm:main}; it shows that the $K$-dependence of that sampling term cannot be removed, but it leaves a gap. The monotone certificate bounds a different, smaller functional (a maximum over at most $L$ events) and is not covered. Requiring the slack of Proposition~\ref{prop:fs} to be at most $\epsilon/2$ needs $n\gtrsim K/\epsilon^2$, while the lower bound is $\max\{K^{2/3}/\epsilon^{4/3},\sqrt K/\epsilon^2\}$; for fixed $\epsilon$ the gap is a factor of order $\sqrt K$. We do not know whether it can be closed for certificates (as opposed to testers). The proposition is stated for $T=1$, a special case of our setting; for $T>1$ the observations within an episode are dependent and we do not claim a lower bound.
+
+\begin{proposition}[Cost labels do not help]\label{prop:labels}
+Let per-step costs be binary and augment the alphabet with the realised cost bit, so that Assumption~\ref{asm:suff} holds trivially. For the empirical occupancies, $\TV(\hat d_A,\hat d_B)\ge|\hat c_A-\hat c_B|$, where $\hat c_\pi=\hat J_\pi/T$. Hence the plug-in bound $\hat J_B+T\,\TV(\hat d_A,\hat d_B)$ is at least the direct estimate $\hat J_A$, and the finite-sample bound of Proposition~\ref{prop:fs} is at least $\hat J_A+T\sqrt{\ln(1/\delta)/(2n_A)}$, the Hoeffding bound computed directly from the labelled episodes of $A$ (which does not depend on $K$).
+\end{proposition}
+
+Proposition~\ref{prop:labels} explains why we do not try to restore sufficiency by labelling symbols with realised costs: with labels the certificate is never better than evaluating $A$ directly, so it is useful only when computed \emph{without} cost labels of $A$, and the unlabelled alphabet must then carry enough information about the cost, as Proposition~\ref{prop:necessary} requires. In Section~\ref{sec:experiments} we construct such an alphabet from baseline-pilot data alone.
+
+\begin{enumerate}
+  \item[] \textbf{Procedure.} (1) Fix the discretisation $\phi$ and the horizon $T$ before looking at rollouts of $A$ (fitting $\phi$ on separate baseline rollouts keeps the guarantee valid). (2) Roll out $B$ and $A$ for $n_B,n_A$ independent episodes and count symbols per episode. (3) Compute $\hat J_B$, $\TV(\hat d_A,\hat d_B)$ and $s_\delta$. (4) Report the bound of Proposition~\ref{prop:fs}, together with the ceiling $T$ and whether the bound is below it. For the monotone certificate, additionally fix the risk level $b$, the onset set $\mathcal T$ and the slack $\eta$ from baseline pilot data (steps 1--2), and use Proposition~\ref{prop:fsks} or~\ref{prop:eb} in step 4.
+\end{enumerate}
+
+\section{Experiments}
+\label{sec:experiments}
+
+The experiments are designed to measure (i) whether the certificates are ever violated when their assumptions hold, (ii) how large they are relative to the trivial ceiling $T$ and to the realised cost, (iii) how the choice of alphabet affects the cost-sufficiency assumption, and (iv) how they compare with importance sampling. All numbers are produced by the scripts in the \texttt{experiments/v2} directory (Section~\ref{sec:repro}); the tables are generated from their output files and every number quoted in the text is re-derived from those files by \texttt{check\_numbers.py}.
+
+\paragraph{Reported quantities.} $J_A$ is the realised mean cost of $A$ on an independent set of episodes (10000 for CartPole, 300 for Safety-Gymnasium). \emph{TV}, \emph{JSD} and \emph{KS$^+$} are plug-in bounds $\hat J_B+T\,D(\hat d_A,\hat d_B)$ with $D$ the total variation (Theorem~\ref{thm:main}), the Jensen--Shannon form (Corollary~\ref{cor:jsd}) and the one-sided Kolmogorov--Smirnov distance over all thresholds (Theorem~\ref{thm:mono}); $\mathrm{KS}^+_{\mathcal T}$ restricts to onset thresholds $\mathcal T$. These plug-in bounds are not guarantees. \emph{Fin.}\ is Proposition~\ref{prop:fs} (TV) or Proposition~\ref{prop:fsks} (``Hoeff.''), and \emph{EB} is Proposition~\ref{prop:eb}; all use $\delta=0.025$ (failure probability at most $0.05$). \emph{$J_{\text{aware}}$} is $T\sum_z\hat d_A(z)\hat{\bar c}(z)$ with $\hat{\bar c}$ the baseline's per-symbol cost rate (the known cost function in CartPole); it uses what the cost-agnostic bounds avoid and serves as a reference. The \emph{ceiling} is $T$ (200 for CartPole, 1000 for Safety-Gymnasium); a bound above it carries no information.
+
+\subsection{Constrained CartPole (assumptions hold exactly)}
+
+\paragraph{Setup.} CartPole-v1, horizon $T=200$. The alphabet is a $10\times3$ grid over pole angle and angular velocity plus an absorbing symbol for a fallen pole ($K=31$). The cost is a function of the symbol: a ramp in the absolute angle of the bin centre (zero below $0.05$\,rad, one above $0.15$\,rad), and one for the absorbing symbol, so Assumption~\ref{asm:suff} holds exactly. The risk level is the absolute angle bin (0--4) with the absorbing symbol as level 5; the cost is nondecreasing in it, so Theorem~\ref{thm:mono} applies with $\mathcal T$ equal to all five thresholds. The baseline is $a=\mathbf 1[\theta+0.5\dot\theta>0]$; the agents are the baseline with a random action with probability $\epsilon\in\{0.02,0.05,0.1,0.2,0.3,0.5\}$, controllers with a smaller angular-velocity gain (0.1, 0.25) and a controller with a bias term (\texttt{lazy}). For each agent we draw 10000 episodes for certificates and an independent 10000 for $J_A$; certificates use $n\in\{100,500,2000\}$ episodes per policy on disjoint blocks (20, 20 and 5 repetitions).
+
+\begin{table}[ht]
+\centering
+\caption{CartPole: realised cost $J_A$ and bounds (mean over disjoint samples). The baseline's cost is $J_B=0.1$. TV, JSD and KS$^+$ are plug-in at $n=2000$; the other columns are finite-sample bounds at the stated $n$ with $\delta=0.025$. Ceiling: 200.}
+\label{tab:cartpole}
+\small
+\input{tab_cartpole}
+\end{table}
+
+\paragraph{Validity.} Over the 405 evaluations (27 agent-by-$n$ cells; repetitions within a cell use disjoint samples, cells share baseline blocks and are not independent) the TV and JSD plug-in bounds, the finite-sample TV bound, the finite-sample monotone bound (Hoeffding) and the empirical-Bernstein bound were never violated. The plug-in KS$^+$ bound, which carries no guarantee, was violated in 11 of 405 evaluations, all for agents whose cost is within $0.2$ of the baseline's and where the bound is dominated by the noise in $\hat J_B$.
+
+\paragraph{Non-vacuousness.} The finite-sample TV bound is below the ceiling for 5, 8 and 9 of the 9 agents at $n=100$, $500$ and $2000$. The monotone empirical-Bernstein bound is below the ceiling for 8, 9 and 9 agents (range 84.5--232.9 at $n=100$, 16.9--155.9 at $n=500$, 4.3--139.7 at $n=2000$). For the six agents with $J_A<0.8$ and $n=2000$ it is 4.3--8.8, which is 5 to 11 times below the TV bound; the remaining gap to $J_A$ comes from the baseline-cost term and from the tail-fraction radii.
+
+\paragraph{Price of agnosticism.} The cost-aware estimate $J_{\text{aware}}$ is within 0.4 cost units of $J_A$ at $n=2000$. The plug-in TV bound exceeds $J_A$ by a factor of 6--18 for the noise agents with $\epsilon\le0.2$ and about 60 for \texttt{lazy}, while the plug-in KS$^+$ bound exceeds it by a factor of 3--6 for those noise agents and 3.6 for \texttt{lazy}: assuming monotone cost removes most of the looseness for these agents, and what remains is the price of not knowing the cost function.
+
+\subsection{Comparison with importance sampling (CartPole)}
+
+Importance sampling (IS) is the basis of high-confidence off-policy evaluation~\citep{thomas2015hcope}. It needs the action probabilities of both policies and data from the baseline only, whereas our certificates need rollouts of both and no action probabilities. To compare on equal terms we use baseline $B$ with noise $\epsilon_B=0.3$ ($J_B=20.0$), agents with $\epsilon_A\in\{0.05,0.1,0.2\}$ (so both policies have full support and explicit probabilities, $\pi(a\mid s)=(1-\epsilon)\mathbf 1[a=a^*(s)]+\epsilon/2$), and $n=2000$ baseline episodes.
+
+\begin{table}[ht]
+\centering
+\caption{CartPole, importance sampling versus the occupancy certificates, $n=2000$ episodes per policy. SNIS: self-normalised IS estimate of $J_A$ from baseline data. ESS: effective sample size of the weights. $\log_{10}$ max weight: $\log_{10}$ of the largest possible trajectory weight $\rho_{\max}=\bigl((1-\epsilon_A/2)/(1-\epsilon_B/2)\bigr)^T$. TV bound: plug-in; Finite-sample: Proposition~\ref{prop:fs}.}
+\label{tab:is}
+\small
+\input{tab_is}
+\end{table}
+
+The self-normalised IS point estimates are close to $J_A$ (errors 0.57, 0.33, 0.45 cost units) although the effective sample size is 2.2, 3.5 and 65.8 of 2000, but they carry no guarantee. A confidence bound of the Hoeffding type needs the range of the weighted cost, which is $T\rho_{\max}$ with $\rho_{\max}$ between $10^{5}$ and $10^{12}$ here, so that its slack at $n=2000$ is between $10^{5.7}$ and $10^{12.7}$ cost units, far above the ceiling of 200; such range-based bounds are therefore vacuous at this horizon. Tighter, variance-adaptive IS bounds exist, and we have not evaluated them. Truncating the weights, as is done for lower confidence bounds on return, biases a cost estimate downwards and so does not give an upper bound. Our certificates here are above $J_B$ itself (the plug-in TV bounds are 53.3--79.6 and the finite-sample ones 92.9--119.1, against $J_B=20.0$): they are one-sided bounds on the \emph{excess} over the baseline and cannot certify that an agent is safer than $B$, whereas IS can estimate this. The two approaches therefore answer different questions: ours is usable when action probabilities are unavailable and the agent must be certified not to be worse than the baseline by more than the stated amount.
+
+\subsection{Safety-Gymnasium (assumptions hold approximately)}
+
+\paragraph{Setup.} We trained PPO-Lagrangian~\citep{ji2024omnisafe} with initial multipliers $\lambda\in\{0.1,0.5,1,2,5\}$ for 100k steps each on SafetyPointGoal1-v0 (three training seeds) and SafetyCarGoal1-v0 (one seed)~\citep{ji2023safetygym}. For each task and seed the $\lambda=5$ policy is the baseline $B$, and the agents are the other four policies and four noisy versions of the baseline (Gaussian action noise $\sigma\in\{0.1,0.3,0.6,1.0\}$): 8 agents per (task, seed), 32 cells in total. The baselines are not equally safe: $J_B=3.7$, $82.4$ and $6.7$ for the three PointGoal1 seeds and $58.7$ for CarGoal1, so for some seeds many agents are \emph{safer} than the baseline. Horizon $T=1000$. Certificates use $n=400$ episodes per policy and $J_A$ an independent 300 episodes.
+
+\paragraph{Two alphabets.} Both are fixed from a baseline pilot (50 episodes, half of them with action noise $\sigma=1.5$, a value not used for any agent, because the noiseless baselines rarely incur cost) before any agent is rolled out. (a) \emph{$k$-means}: $K=16$ clusters of the whole observation. (b) \emph{Cost-relevant}: the window of 16 consecutive observation dimensions whose maximum best predicts the per-step cost on the pilot (window 28 for the three PointGoal1 seeds, with pilot $R^2=0.77,0.81,0.93$; window 40 for CarGoal1, $R^2=0.82$), cut into 8 risk levels at pilot quantiles $\{.5,.8,.9,.95,.97,.98,.99\}$ and crossed with 3 $k$-means clusters of the remaining dimensions ($K=24$). The onset thresholds $\mathcal T$ are those between consecutive levels at which the pilot cost rate rises by at least 0.05; they are $\{6\}$, $\{1,2\}$, $\{4,5\}$ for the three PointGoal1 seeds and $\{2,3\}$ for CarGoal1. The slack $\eta$ of Theorem~\ref{thm:mono} is the total pilot rise outside $\mathcal T$ plus a margin of $0.05$, which gives $\eta=0.05$ (0.055 for seed 2). \emph{What was fixed before what.} The alphabet, onset set and $\eta$ of each run are computed from baseline pilot episodes only, before the agents of that run are analysed. They are not independent of our development, however: PointGoal1 seed 0 was the development run, on which the window-selection rule was designed after inspecting which observation block correlates with cost in the rollouts of a non-baseline agent ($\lambda=0.1$); and the rule for $\mathcal T$ replaced a fixed set $\{5,6\}$ (chosen on seed 0) after that set failed on CarGoal1. The $0.05$ margin in $\eta$ was likewise chosen after seeing the data. The alphabets of the other three runs are therefore held out from the design, but nothing is held out for the onset rule or for the margin.
+
+\begin{table}[ht]
+\centering
+\caption{PointGoal1, training seed 0 (baseline cost $J_B=3.7$), $n=400$ episodes per policy, ceiling 1000. $J_{\text{aware}}$ is shown for both alphabets. TV and KS$^+$ (all thresholds) are plug-in; KS$^+_{\mathcal T}$ is the plug-in bound of Theorem~\ref{thm:mono} with $\mathcal T=\{6\}$, $\eta=0.05$; the last three columns are finite-sample bounds (Hoeff.\ and EB with the same $\mathcal T$, $\eta$). Other seeds and CarGoal1: Appendix~\ref{app:sg}.}
+\label{tab:safetygym}
+\small
+\input{tab_safetygym}
+\end{table}
+
+\paragraph{Sufficiency depends on the alphabet.} With the $k$-means alphabet the cost-aware estimate is off by a median relative error of 0.38 over the 24 PointGoal1 cells (it is 9.8--10.8 for agents whose realised cost is 73--115 in seed 0), indicating that Assumption~\ref{asm:suff} fails; with the cost-relevant alphabet the median relative error is 0.17 (83--117 for the same agents). On CarGoal1 the $k$-means alphabet was already adequate (median relative error 0.06) and the cost-relevant one was slightly worse (0.15). Relative errors are computed against $\max\{J_A,1\}$. The sufficiency assumption is therefore a property of the alphabet and the pair of policies. It is not directly testable from the baseline alone. As a direct check on the hypothesis of Theorem~\ref{thm:mono}, which ignores the three clusters inside each risk level, we compute for each cell the drift $T\sum_\ell\hat d_A(\ell)\,(\hat g_A(\ell)-\hat g_B(\ell))$ between the per-level cost rates of $A$ and of the baseline on their certificate pools: its median absolute value is 2\% of $\max\{J_A,1\}$, its largest absolute value 18.0 cost units (PointGoal1 seed 1), and it is positive (the agent costs more than the baseline's rates predict) in 19 of 32 cells. A weaker check is available on the pilot, between its two policies (noiseless and $\sigma=1.5$): the largest difference in per-level cost rate, over levels with at least 20 visits for both, is 0.31 and 0.27 for PointGoal1 seed 1 and CarGoal1 (at the transition levels), 0.06 for seed 2, and cannot be computed for seed 0 beyond level 4 because the noiseless pilot visits the top levels too rarely; it does not predict the drift of the other agents.
+
+\paragraph{Validity.} Across the 32 cells, none of the finite-sample bounds (TV, monotone Hoeffding and monotone EB, all-threshold and pilot-selected) was violated. This is not a strong test: the four baseline pools are shared by the cells of a run, and the finite-sample slack (127--258 cost units for the EB certificate over its plug-in counterpart) is large compared with the sampling error of $\hat J_B$ and of the occupancies. Ground-truth costs are heavy-tailed (per-episode standard deviations up to 227 for a mean of 82), so $J_A$ itself has a standard error of 1.3--12.7 cost units, and the certificate-pool and ground-truth means of the baselines agree within $|z|\le1.1$; none of the plug-in violations below exceeds two standard errors of the ground truth. Plug-in bounds, which carry no guarantee, were violated: the pilot-selected plug-in $\mathrm{KS}^+_{\mathcal T}+\eta\,\mathrm{KS}^+_{\mathrm{all}}$ in 3 of 32 cells (6 of 32 with $\eta=0$), the TV plug-in with the $k$-means alphabet in 1 of 32 (CarGoal1) and with the cost-relevant alphabet in none. If the onset set is fixed at $\{5,6\}$ instead of being selected from the pilot, the plug-in $\mathrm{KS}^+_{\mathcal T}$ is violated in 14 of the 32 cells (the finite-sample bounds still hold, which we attribute to their slack, not to validity): a misspecified onset set silently voids the guarantee, which is why it must come from baseline data.
+
+\paragraph{Non-vacuousness and looseness.} With the pilot-selected onset set the empirical-Bernstein bound is below the ceiling of 1000 in all 32 cells (137--406); the TV finite-sample bound on the same alphabet is below it in 30 of 32. The plug-in bound is within a median factor of 1.4 (PointGoal1) and 1.2 (CarGoal1) of $J_A$, while the empirical-Bernstein certificate is a median factor of 6.3 (PointGoal1) and 4.1 (CarGoal1) above it, against 15.1 and 7.7 for the TV finite-sample bound. The remaining looseness is the sampling slack at $n=400$ and, for agents safer than the baseline, the one-sided nature of the bound. \emph{Monotonicity check.} The baseline's own per-level cost rates were nondecreasing in all four runs, and the agents' empirical per-level rates were nondecreasing in 31 of 32 cells (the exception is one agent of PointGoal1 seed 1, $\lambda=1$); this checks the assumption of Theorem~\ref{thm:mono} only on the data at hand.
+
+\section{Limitations}
+\label{sec:limits}
+
+\begin{itemize}
+  \item \textbf{Assumption~\ref{asm:suff} is the substantive assumption} and Proposition~\ref{prop:necessary} shows it cannot be removed. It is a property of the alphabet and the pair of policies, not of the task alone: with a generic $k$-means alphabet it failed on PointGoal1 (median relative error of the cost-aware estimate 0.38) and an alphabet built from baseline pilot data restored it approximately (0.17), but not exactly. It can be checked only with cost labels for some episodes of the agent (we report per-cell drift on certificate pools); Proposition~\ref{prop:labels} explains why cost labels cannot be used inside the certificate itself, and a pilot comparison between two baseline-like policies is only a weak proxy.
+  \item \textbf{The monotone-cost certificate adds assumptions}: cost is nondecreasing in the risk level, and the onset set $\mathcal T$ contains every threshold at which cost can begin to rise. We select $\mathcal T$ and $\eta$ from baseline pilot data, and the selection rule was itself developed on the same task family (Section~\ref{sec:experiments}); a misspecified set voids the guarantee, as the fixed set $\{5,6\}$ shows (plug-in bound violated in 14 of 32 cells). The all-threshold version avoids $\mathcal T$ but is looser.
+  \item \textbf{Looseness.} The certificates are one-sided bounds on the excess over the baseline: they cannot certify that an agent is safer than $B$, and for baselines that are themselves unsafe (PointGoal1 seed 1, $J_B=82.4$) they are mostly a statement about $J_B$. At $n=400$ the finite-sample EB certificate was a median 6.3 (PointGoal1) and 4.1 (CarGoal1) times the realised cost on Safety-Gymnasium, and the sampling term of the TV certificate decays only as $\sqrt{K/n}$.
+  \item \textbf{Lower bound.} Proposition~\ref{prop:lower} is for $T=1$ and leaves a gap of order $\sqrt K$ to our slack; we do not know whether it can be closed for certificates.
+  \item \textbf{Scope.} One low-dimensional environment where all assumptions hold exactly, three training seeds on PointGoal1 and one on CarGoal1, all with the same short training recipe (100k steps, PPO-Lagrangian), and agents that are siblings of the baseline. We do not evaluate real deployments or compare with deployment-time safety mechanisms such as shields, because the certificate is not an alternative to them. The importance-sampling comparison is on a single environment with noise policies.
+  \item \textbf{Novelty.} The main inequalities are elementary consequences of the definitions of total variation and of the Kolmogorov--Smirnov distance; the contribution is their careful statement for pre-deployment certification, the finite-sample treatment and the measurements above.
+\end{itemize}
+
+\section{Reproducibility}
+\label{sec:repro}
+
+Code, the unit tests (\texttt{tests/test\_cert.py}) and the experiment scripts (\texttt{experiments/v2}) are in the public repository \texttt{REPO\_URL}, tag \texttt{REPO\_TAG}, which also contains the summary files behind every table and the rollout data. \texttt{cartpole.py gen|analyse} regenerate Table~\ref{tab:cartpole}; \texttt{is\_comparison.py} regenerates Table~\ref{tab:is}; \texttt{train\_ppolag.py} and \texttt{safetygym2.py fit|onset|gen|analyse} regenerate Table~\ref{tab:safetygym} and Appendix~\ref{app:sg}; \texttt{make\_tables.py} writes the \LaTeX{} tables and \texttt{check\_numbers.py} verifies every number quoted in the text against the summary files. Pinned versions are in \texttt{experiments/v2/requirements.txt} (Python 3.10, gymnasium 0.28.1, safety-gymnasium 0.4.1, OmniSafe 0.5.0, numpy 1.26.4, scikit-learn 1.7.2, torch 2.14.1). Seeds are fixed in the scripts; the PPO-Lagrangian training itself is not bit-reproducible across machines, so the trained policies are part of the released data.
+
+\appendix
+\section{Proofs}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+By the tower property and Assumption~\ref{asm:suff}, $\mathbb E_\pi[c_t]=\sum_z\Pr_\pi(z_t=z)\bar c(z)$. Summing over $t$ and using $d_\pi(z)=\frac1T\sum_t\Pr_\pi(z_t=z)$ gives $J(\pi)=T\sum_z d_\pi(z)\bar c(z)$. This is an identity; no independence or Markov structure is used. For any $f:\mathcal Z\to\mathbb R$ and probability vectors $p,q$, $\sum_z(p-q)(z)f(z)=\sum_z(p-q)(z)(f(z)-m)$ for $m=\tfrac12(\max f+\min f)$, which is at most $\tfrac12(\max f-\min f)\|p-q\|_1=(\max f-\min f)\TV(p,q)$. Apply with $f=\bar c$; $\max\bar c-\min\bar c\le1$.
+\end{proof}
+
+\begin{proof}[Proof of Corollary~\ref{cor:jsd}]
+Let $M=\tfrac12(P+Q)$. By Pinsker's inequality, $\mathrm{KL}(P\|M)\ge2\,\TV(P,M)^2$ and likewise for $Q$, with natural logarithms. Since $\TV(P,M)=\TV(Q,M)=\tfrac12\TV(P,Q)$, $\JSD_{\text{nats}}=\tfrac12\mathrm{KL}(P\|M)+\tfrac12\mathrm{KL}(Q\|M)\ge\tfrac12\TV(P,Q)^2$, i.e.\ $\TV\le\sqrt{2\,\JSD_{\text{nats}}}=\sqrt{2\ln2\,\JSD_{\text{bits}}}$.
+\end{proof}
+
+\begin{proof}[Proof of Proposition~\ref{prop:tight}]
+The upper bound is the last step of the proof of Theorem~\ref{thm:main}. For $\bar c=\mathbf 1\{d_A>d_B\}$, $\sum_z(d_A-d_B)(z)\bar c(z)=\sum_{z:d_A>d_B}(d_A-d_B)(z)=\TV(d_A,d_B)$, because the positive and negative parts of $d_A-d_B$ have equal mass.
+\end{proof}
+
+\begin{proof}[Proof of Proposition~\ref{prop:necessary}]
+Take two symbols $\{0,1\}$ and the same fixed sequence of symbols $z_t$ under both policies, so that $d_A=d_B$. Let the cost be $c_t=\mathbf 1\{z_t=1\}$ under $B$ and $c_t=\mathbf 1\{z_t=0\}$ under $A$ (the cost depends on a hidden state that the discretisation does not reveal); with $z_t=1$ for a fraction $\epsilon$ of the steps, $J(B)=\epsilon T$ and $J(A)=(1-\epsilon)T$.
+\end{proof}
+
+\begin{proof}[Proof of Corollary~\ref{cor:comp}]
+Apply Theorem~\ref{thm:main} twice, or equivalently use the triangle inequality $\TV(d_A,d_B)\le\TV(d_A,d_C)+\TV(d_C,d_B)$. This requires Assumption~\ref{asm:suff} for $A$, $B$ and $C$ jointly.
+\end{proof}
+
+\begin{proof}[Proof of Proposition~\ref{prop:fs}]
+\emph{Baseline cost.} Episode costs lie in $[0,T]$ and are independent, so by Hoeffding's inequality $J(B)\le\hat J_B+T\sqrt{\ln(1/\delta)/(2n_B)}$ with probability $\ge1-\delta$. We then bound $J(A)=J(B)+(J(A)-J(B))$ using this and Theorem~\ref{thm:main}.
+
+\emph{Occupancy.} Let $f=\TV(\hat d_A,\hat d_B)$, a function of $n_A+n_B$ independent episodes. Changing one episode of $A$ changes $\hat d_A$ by at most $1/n_A$ in total variation, because the per-episode frequency vector $x_i$ is a probability vector; the same holds for $B$ with $1/n_B$. McDiarmid's inequality~\citep{mcdiarmid1989bounded} with $\sum c_i^2=1/n_A+1/n_B$ gives $f\ge\mathbb E f-\sqrt{\tfrac12(1/n_A+1/n_B)\ln(1/\delta)}$ with probability $\ge1-\delta$. By the triangle inequality, $\TV(d_A,d_B)\le f+\TV(\hat d_A,d_A)+\TV(\hat d_B,d_B)$ pointwise, so $\TV(d_A,d_B)\le\mathbb E f+\mathbb E\,\TV(\hat d_A,d_A)+\mathbb E\,\TV(\hat d_B,d_B)$. For each symbol, $\hat d_A(z)$ is the mean of $n_A$ i.i.d.\ variables $x_i(z)\in[0,1]$ with mean $d_A(z)$, so $\mathbb E|\hat d_A(z)-d_A(z)|\le\sqrt{d_A(z)/n_A}$ and, by Cauchy--Schwarz, $\mathbb E\,\TV(\hat d_A,d_A)\le\tfrac12\sum_z\sqrt{d_A(z)/n_A}\le\tfrac12\sqrt{K/n_A}$. Combining and taking a union bound over the two events gives the claim.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:mono}]
+Write $a_\ell=d_A(b=\ell)$, $\beta_\ell=d_B(b=\ell)$ and $\Delta_\tau=d_A(b>\tau)-d_B(b>\tau)$. By Theorem~\ref{thm:main}'s identity, $J(A)-J(B)=T\sum_\ell(a_\ell-\beta_\ell)g(\ell)$. Abel summation, using $\sum_\ell(a_\ell-\beta_\ell)=0$, gives $\sum_\ell(a_\ell-\beta_\ell)g(\ell)=\sum_{\tau=0}^{L-1}\bigl(g(\tau+1)-g(\tau)\bigr)\Delta_\tau$. The increments are nonnegative and sum to at most $1$; those inside $\mathcal T$ contribute at most $\max_{\tau\in\mathcal T}[\Delta_\tau]_+$ and those outside $\mathcal T$, whose total is at most $\eta$, at most $\eta\max_\tau[\Delta_\tau]_+$. The inequalities $\mathrm{KS}^+_{\mathcal T}\le\mathrm{KS}^+_{\{0..L-1\}}\le\TV$ hold because $\Delta_\tau$ is the difference of the two measures on a single event. For $\eta=0$ and the step function at a maximising $\tau^\star$ with $\Delta_{\tau^\star}>0$, the increments are zero except $g(\tau^\star+1)-g(\tau^\star)=1$, so the sum equals $\Delta_{\tau^\star}=\mathrm{KS}^+_{\mathcal T}$.
+\end{proof}
+
+\begin{proof}[Proof of Proposition~\ref{prop:fsks}]
+The baseline term is as in Proposition~\ref{prop:fs}. For each $\tau\in\mathcal T$ and each episode $i$ the tail fraction $x_i(b>\tau)\in[0,1]$, and these are i.i.d.\ across episodes with mean $d(b>\tau)$. Hoeffding's inequality gives, for each threshold that enters ($\mathcal T$ if $\eta=0$, all thresholds otherwise), $d_A(b>\tau)\le\hat d_A(b>\tau)+\sqrt{\ln(2m/\delta)/(2n_A)}$ with probability at least $1-\delta/(2m)$, and $d_B(b>\tau)\ge\hat d_B(b>\tau)-\sqrt{\ln(2m/\delta)/(2n_B)}$ likewise. A union bound over the $m$ thresholds and the two policies has total failure probability at most $\delta$, so $\Delta_\tau\le\hat\Delta_\tau+s^{\mathrm{KS}}_\delta$ simultaneously, and hence $\mathrm{KS}^+_{\mathcal T}(d_A,d_B)\le\mathrm{KS}^+_{\mathcal T}(\hat d_A,\hat d_B)+s^{\mathrm{KS}}_\delta$ and, if $\eta>0$, the same for $\mathrm{KS}^+_{\mathrm{all}}$ (which is at most one). Combining with the baseline event gives probability at least $1-2\delta$.
+\end{proof}
+
+\begin{proof}[Proof of Proposition~\ref{prop:eb}]
+Per-episode tail fractions and normalised costs lie in $[0,1]$ and are i.i.d.\ across episodes. Theorem~4 of Maurer and Pontil~\citep{maurer2009eb} states that for i.i.d.\ $x\in[0,1]^n$, $n\ge2$, the mean of $x$ is within $r_\delta(x)$ of its expectation with probability at least $1-\delta$ (in each direction). We apply it to the upper deviation of $d_A(b>\tau)$ and the lower deviation of $d_B(b>\tau)$ for each $\tau\in\mathcal T$ at level $\delta'$ and to the upper deviation of the baseline cost at level $\delta$; the union bound over $2m$ events at level $\delta'$ costs $\delta$. Then $\Delta_\tau\le u_\tau$ for all thresholds that enter, simultaneously, and Theorem~\ref{thm:mono} applies (for $\eta>0$ the events are taken over all $L$ thresholds, so that $\mathrm{KS}^+_{\mathrm{all}}$ is controlled as well).
+\end{proof}
+
+\begin{proof}[Proof of Proposition~\ref{prop:lower}]
+Declare ``equal'' if $U\le\epsilon/2$ and ``far'' otherwise. If $d_A=d_B$, the output is ``equal'' with probability at least $2/3$ by the second assumption. If $\TV(d_A,d_B)\ge\epsilon$, then by validity $U\ge\TV(d_A,d_B)\ge\epsilon>\epsilon/2$ with probability at least $2/3$, so the output is ``far''. This is a tester that distinguishes $d_A=d_B$ from $\|d_A-d_B\|_1\ge2\epsilon$ with error probability at most $1/3$ from $n$ samples of each distribution. By Chan, Diakonikolas, Valiant and Valiant~\citep{chan2014closeness}, any such tester needs $\Omega(\max\{K^{2/3}/\epsilon^{4/3},\sqrt K/\epsilon^2\})$ samples, the second term in the range $\epsilon=\Omega(K^{-1/4})$ stated there.
+\end{proof}
+
+\begin{proof}[Proof of Proposition~\ref{prop:labels}]
+Let $E$ be the event that the cost bit is one. Then $\hat d_\pi(E)=\hat c_\pi$, and $\TV(\hat d_A,\hat d_B)\ge|\hat d_A(E)-\hat d_B(E)|=|\hat c_A-\hat c_B|$. Hence $\hat J_B+T\,\TV(\hat d_A,\hat d_B)\ge T\hat c_B+T(\hat c_A-\hat c_B)=\hat J_A$. In Proposition~\ref{prop:fs}, $s_\delta\ge\sqrt{\tfrac12(\tfrac1{n_A}+\tfrac1{n_B})\ln\tfrac1\delta}\ge\sqrt{\ln(1/\delta)/(2n_A)}$, which gives the second claim.
+\end{proof}
+
+\section{Experimental details}
+\label{app:details}
+\texttt{CartPole}: policies, discretisation and cost ramp as in Section~\ref{sec:experiments}; the steps after a failing step are padded with the absorbing symbol. \texttt{Safety-Gymnasium}: PPO-Lagrangian with 2000 steps per epoch, cost limit 25, $\lambda_{\text{init}}\in\{0.1,0.5,1,2,5\}$, 100k steps, latest saved checkpoint, deterministic actor mean (plus Gaussian noise where stated); episodes have fixed length 1000. The symbol of the observation before a step is paired with the cost returned by that step, per-step costs are at most one (asserted on the recorded data) and every episode has exactly $T$ steps (asserted). The alphabet pilot consists of 10 jobs of 5 baseline episodes (every 5th step recorded), half noiseless and half with $\sigma=1.5$; the window and the risk-level edges are fixed from it, and the onset set from a re-run of the same pilot. The pilot, certificate and ground-truth episodes use disjoint seeds. Ground-truth $J_A$ uses 300 independent episodes per agent, so its own standard error is not negligible for heavy-tailed costs (the baseline of PointGoal1 seed 1 has a certificate-pool mean of 64 against a ground-truth mean of 82, a difference of $z=1.1$ standard errors).
+
+\section{Safety-Gymnasium: all tasks and seeds}
+\label{app:sg}
+
+\begin{table}[ht]
+\centering
+\caption{All 32 (task, seed, agent) cells, $n=400$ episodes per policy. $J_B$ and $J_A$: ground-truth costs of baseline and agent. $J_{\text{aware}}$ for both alphabets. TV: plug-in, cost-relevant alphabet. KS$^+_{\mathcal T}$: plug-in with the pilot-selected onset set. TV fin., KS$^+_{\mathcal T}$ is the plug-in bound with the pilot-selected $\mathcal T$ and $\eta$ (0.05, or 0.055 for seed 2); KS$^+_{\mathcal T}$ Hoeff.\ and EB: finite-sample bounds with the same $\mathcal T$, $\eta$.}
+\label{tab:sgall}
+\scriptsize
+\input{tab_sg_all}
+\end{table}
+
+\bibliographystyle{plainnat}
+\bibliography{refs}
+\end{document}
