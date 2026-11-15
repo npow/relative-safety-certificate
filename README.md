@@ -31,8 +31,21 @@ Python 3.10; versions in `experiments/v2/requirements.txt` (safety-gymnasium nee
       for step in fit onset gen analyse; do python experiments/v2/safetygym2.py $step $d; done; done
     python experiments/v2/make_tables.py && python experiments/v2/check_numbers.py && pytest -q tests
 
-## Artifacts
+## First-round revision analyses
 
-`artifacts/` holds the rollout pools, alphabet/onset files and the final PPO-Lagrangian checkpoints used in the paper
-(`artifacts/pg1` = PointGoal1 seed 0, `pg1s1`, `pg1s2`, `cg1` = CarGoal1 seed 0, `cartpole`). To re-run the analyses without
-re-training, copy them to `data/` (`pg1` -> `data/pg1s0`, others by name) and run the `analyse` steps above.
+The requested review analyses and their machine-readable outputs are in `experiments/v2/revision/`. With the original artifact pools in `data/`:
+
+    python experiments/v2/revision_study.py --artifacts artifacts heldout --out experiments/v2/revision/heldout.json
+    python experiments/v2/revision_study.py --artifacts artifacts threshold-sensitivity --out experiments/v2/revision/threshold-sensitivity.json
+    python experiments/v2/revision_study.py --artifacts artifacts cartpole-power --out experiments/v2/revision/cartpole-power.json
+    python experiments/v2/revision_study.py --artifacts artifacts sufficiency-failure --out experiments/v2/revision/sufficiency-failure.json
+    python experiments/v2/is_eb.py --artifacts artifacts/cartpole --out experiments/v2/revision/is-eb.json
+
+`pilot_sensitivity.py` reruns the pilot-size bootstrap using a released checkpoint. `heldout_safetygym.py` evaluates the frozen pilot-selection rule on the additional PointGoal1 seed-3 checkpoints; its pilot, certificate and independent truth samples are kept separate. These sensitivity and held-out results are described as diagnostics and a case study, not as a broad coverage validation. Run `python experiments/v2/check_numbers.py` to audit the reported values.
+
+## Revision release artifacts
+
+The public `artifacts/pg1s3/` directory contains the seed-3 baseline (`lam5.0`) and candidate (`lam0.1`) checkpoints. The accompanying `experiments/v2/revision/heldout-pg1-seed3.npz` preserves the pilot, certificate and independent truth episodes; `heldout-pg1-seed3.json` records the frozen selection and summary. Reproduce the held-out case with:
+
+    python experiments/v2/heldout_safetygym.py --checkpoint-dir artifacts/pg1s3 --seed 2026111515 --out experiments/v2/revision/heldout-pg1-seed3.json --raw-out experiments/v2/revision/heldout-pg1-seed3.npz
+

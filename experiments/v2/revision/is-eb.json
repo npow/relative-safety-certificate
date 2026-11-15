@@ -1,0 +1,50 @@
+{
+  "method": "Unnormalized per-trajectory importance sampling with the Maurer-Pontil empirical-Bernstein upper bound.",
+  "confidence": 0.95,
+  "behavior_seed": 9112026,
+  "n": 2000,
+  "results": [
+    {
+      "eps_A": 0.05,
+      "eps_B": 0.3,
+      "n_behavior_episodes": 2000,
+      "delta": 0.05,
+      "true_cost_reference": 0.19663699999999995,
+      "ois_estimate": 0.049708658214758866,
+      "ois_empirical_variance": 4.526749759381477,
+      "ois_eb_radius": 711584446982.9221,
+      "ois_eb_upper": 711584446982.9718,
+      "max_trajectory_weight_log10": 11.91713799684881,
+      "max_weighted_return": 165260092883325.0,
+      "covers_reference": true
+    },
+    {
+      "eps_A": 0.1,
+      "eps_B": 0.3,
+      "n_behavior_episodes": 2000,
+      "delta": 0.05,
+      "true_cost_reference": 0.7127029999999998,
+      "ois_estimate": 1.966530851809446,
+      "ois_empirical_variance": 4509.0108142193585,
+      "ois_eb_radius": 3944794333.7037263,
+      "ois_eb_upper": 3944794335.670257,
+      "max_trajectory_weight_log10": 9.66093591491101,
+      "max_weighted_return": 916148575314.8601,
+      "covers_reference": true
+    },
+    {
+      "eps_A": 0.2,
+      "eps_B": 0.3,
+      "n_behavior_episodes": 2000,
+      "delta": 0.05,
+      "true_cost_reference": 4.710022999999999,
+      "ois_estimate": 5.479059821930581,
+      "ois_empirical_variance": 604.259627831096,
+      "ois_eb_radius": 79398.69452632793,
+      "ois_eb_upper": 79404.17358614986,
+      "max_trajectory_weight_log10": 4.964716745006429,
+      "max_weighted_return": 18439398.099550046,
+      "covers_reference": true
+    }
+  ]
+}

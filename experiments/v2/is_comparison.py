@@ -37,6 +37,18 @@ def truth(eps, n, seed):
     return float(costs.mean()), counts, costs
 
 
+def empirical_bernstein_upper(x, upper, delta=0.025):
+    """Maurer-Pontil empirical-Bernstein upper bound for i.i.d. X in [0, upper]."""
+    x = np.asarray(x, dtype=float)
+    n = len(x)
+    if n < 2:
+        raise ValueError("At least two episodes are required")
+    log_term = math.log(2 / delta)
+    variance = float(np.var(x, ddof=1))
+    radius = math.sqrt(2 * variance * log_term / n) + 7 * upper * log_term / (3 * (n - 1))
+    return float(x.mean() + radius), float(radius), variance
+
+
 def main(out):
     from multiprocessing import Pool
     sys.path.insert(0, os.path.dirname(__file__)); from cert import certificate
@@ -52,9 +64,16 @@ def main(out):
         step_max = (1 - e / 2) / (1 - eps_b / 2)           # largest per-step ratio pi_A(a|s)/pi_B(a|s) (greedy action)
         _, cAn, _ = cp.rollout_pool(("A", 0.5, e, 0.0, n, 13 + int(e * 100)))
         c = certificate(cAn, cB, coB, T)
+        log10_max_weight = T * math.log10(step_max)
+        max_weight = math.exp(T * math.log(step_max))
+        weighted_returns = np.exp(lw) * G
+        eb_upper, eb_slack, eb_variance = empirical_bernstein_upper(weighted_returns, T * max_weight, delta=0.05)
         rows.append(dict(eps_A=e, eps_B=eps_b, J_true=Jt, J_B=float(G.mean()), ess=ess, snis=snis, ois=ois,
                          log10_max_weight=T * math.log10(step_max),
-                         log10_hoeffding_slack=math.log10(T * 10 ** (T * math.log10(step_max)) * math.sqrt(math.log(1 / 0.025) / (2 * n))), ours_plugin=c["plugin_bound"], ours_finite=c["finite_sample_bound"]))
+                         log10_hoeffding_slack=math.log10(T * 10 ** (T * math.log10(step_max)) * math.sqrt(math.log(1 / 0.05) / (2 * n))), ours_plugin=c["plugin_bound"], ours_finite=c["finite_sample_bound"]))
+        rows[-1].update(is_eb_upper=eb_upper, is_eb_slack=eb_slack, is_eb_sample_variance=eb_variance,
+                        log10_is_eb_slack=math.log10(eb_slack), is_eb_covers_reference=eb_upper >= Jt,
+                        is_eb_delta=0.05, is_eb_max_return=T * max_weight)
         print(rows[-1])
     json.dump(dict(n=n, T=T, rows=rows), open(out, "w"), indent=1)
 

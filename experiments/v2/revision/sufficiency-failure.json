@@ -1,0 +1,14 @@
+{
+  "construction": "One observed symbol z for every step under both policies. Baseline cost is always 0; candidate cost is always 1 per step but depends on an unobserved policy-specific latent variable.",
+  "assumption_1_holds": false,
+  "T": 200,
+  "n_per_policy": 400,
+  "K": 1,
+  "J_B": 0.0,
+  "J_A": 200.0,
+  "empirical_TV": 0.0,
+  "plug_in_TV_upper": 0.0,
+  "finite_sample_TV_upper": 42.78747098380461,
+  "finite_sample_undercoverage": true,
+  "interpretation": "This is a counterexample to applying the certificate without cost sufficiency, not a failure of its stated theorem."
+}

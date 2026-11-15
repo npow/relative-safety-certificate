@@ -62,4 +62,14 @@ for r in isj["rows"]:
     L.append(f"{r['eps_A']} & {f(r['J_true'],2)} & {f(r['snis'],2)} & {f(r['ess'])} & {f(r['log10_max_weight'])} & {f(r['ours_plugin'])} & {f(r['ours_finite'])} \\\\")
 L += ["\\bottomrule", "\\end{tabular}"]
 open(f"{out}/tab_is.tex", "w").write("\n".join(L))
+eb_by_eps = {r["eps_A"]: r["is_eb_upper"] for r in isj["rows"]}
+def sci(x):
+    exponent = int(np.floor(np.log10(x)))
+    return f"{x / (10 ** exponent):.1f}\\times10^{{{exponent}}}"
+L = ["\\begin{tabular}{rrrrrrrr}", "\\toprule", " $\\epsilon_A$ & $J_A$ & SNIS estimate & ESS (of %d) & $\\log_{10}$ max weight & IS EB upper & TV bound & Finite-sample \\\\" % isj["n"], "\\midrule"]
+for r in isj["rows"]:
+    row = f"{r['eps_A']} & {f(r['J_true'],2)} & {f(r['snis'],2)} & {f(r['ess'])} & {f(r['log10_max_weight'])} & ${sci(eb_by_eps[r['eps_A']])}$ & {f(r['ours_plugin'])} & {f(r['ours_finite'])} "
+    L.append(row + chr(92) * 2)
+L += ["\\bottomrule", "\\end{tabular}"]
+open(f"{out}/tab_is.tex", "w").write("\n".join(L))
 print("ok")

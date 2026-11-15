@@ -98,11 +98,60 @@ chk("pilot rate differences", tuple(pil(f) for f in files), (0.0, 0.31, 0.06, 0.
 tex = open(os.path.join(os.path.dirname(__file__), "..", "..", "paper", "main.tex")).read()
 ab = open(os.path.join(os.path.dirname(__file__), "..", "..", "publishfun", "abstract.txt")).read()
 for s in ["405 evaluations", "4.3--8.8", "5 to 11 times", "11 of 405", "84.5--232.9", "16.9--155.9", "4.3--139.7", "within 0.4", "6--18", "3--6", "3.6",
-          "0.57, 0.33, 0.45", "2.2, 3.5 and 65.8", "$10^{5}$ and $10^{12}$", "$10^{5.7}$ and $10^{12.7}$", "53.3--79.6", "92.9--119.1",
+          "errors 0.57, 0.33, and 0.45", "2.2, 3.5 and 65.8", "$10^{5.7}$--$10^{12.7}$", "53.3--79.6", "92.9--119.1",
           "$J_B=3.7$, $82.4$ and $6.7$", "0.77,0.81,0.93", "0.38", "0.17", "0.06", "0.15", "9.8--10.8", "73--115", "83--117",
           "in 3 of 32 cells (6 of 32 with $\\eta=0$)", "14 of the 32", "137--406", "30 of 32", "1.4 (PointGoal1) and 1.2 (CarGoal1)",
           "6.3 (PointGoal1) and 4.1 (CarGoal1)", "15.1 and 7.7", "31 of 32", "$\\eta=0.05$ (0.055 for seed 2)", "1 of 32 (CarGoal1)", "127--258", "1.3--12.7", "$|z|\\le1.1$", "227 for a mean of 82", "2\\% of $\\max\\{J_A,1\\}$", "18.0 cost units", "19 of 32 cells", "0.31 and 0.27", "0.06 for seed 2"]:
     chk("tex contains: " + s, s in tex, True)
-for s in ["405 evaluations", "4.3–8.8", "5 to 11 times", "3 of 32", "4 to 6 times", "range-based importance-sampling"]:
+for s in ["405 evaluations", "4.3–8.8", "4.53 times", "25–100 episodes", "variance-adaptive empirical-Bernstein", "high false-rejection rates"]:
     chk("abstract contains: " + s, s in ab, True)
+# ---------------- first-round revision analyses ----------------
+REV = os.path.join(os.path.dirname(__file__), "revision")
+loadrev = lambda name: json.load(open(os.path.join(REV, name)))
+h = loadrev("heldout.json")
+chk("retrospective holdout cells", h["cell_count"], 24)
+chk("holdout point coverage", h["finite_bound_point_estimate_coverage"], 1.0)
+chk("holdout clear 95% undercoverage", h["clear_undercoverage_95pct_reference_ci"], 0)
+chk("holdout median bound ratio", rr(h["median_bound_to_cost_ratio"], 2), 4.53)
+ts = loadrev("threshold-sensitivity.json")["runs"]
+for run, expected in (("pg1_seed1_holdout", [1, 2]), ("pg1_seed2_holdout", [4, 5]), ("cg1_task_holdout", [2, 3])):
+    rows = ts[run]
+    chk("threshold onset stability " + run, [r["onset"] for r in rows if r["rise_threshold"] in (0.025, 0.05, 0.1, 0.2)], [expected] * 4)
+    chk("threshold sensitivity coverage " + run, sum(r["point_undercoverage_cells"] for r in rows), 0)
+cpow = loadrev("cartpole-power.json")["results"]
+for n, margin, reject in ((100, 1.0, 1.0), (100, 5.0, 1.0), (100, 10.0, 1.0), (500, 1.0, 1.0), (500, 5.0, 1.0), (500, 10.0, 1.0), (2000, 1.0, 1.0), (2000, 5.0, .75), (2000, 10.0, .25)):
+    rows = [r for r in cpow if r["n_per_policy"] == n and r["margin"] == margin]
+    unsafe = [r for r in rows if r["truly_unsafe"]]
+    safe = [r for r in rows if not r["truly_unsafe"]]
+    chk(f"CartPole unsafe detection n={n} margin={margin}", all(r["probability_not_certified"] == 1.0 for r in unsafe), True)
+    chk(f"CartPole safe false rejection n={n} margin={margin}", rr(sum(r["probability_not_certified"] for r in safe) / len(safe), 2), reject)
+failcase = loadrev("sufficiency-failure.json")
+chk("controlled Assumption 1 failure", failcase["finite_sample_undercoverage"], True)
+chk("controlled failure true cost vs finite bound", (rr(failcase["J_A"]), rr(failcase["finite_sample_TV_upper"], 1)), (200, 42.8))
+isrev = loadrev("is-eb.json")
+chk("IS EB covers independent references", all(r["covers_reference"] for r in isrev["results"]), True)
+chk("IS EB all vacuous", all(r["ois_eb_upper"] > 200 for r in isrev["results"]), True)
+pilot = loadrev("pilot-sensitivity-cargoal1.json")
+chk("pilot-size bootstrap rows", len(pilot["results"]), 240)
+chk("pilot-size median U above ceiling at n=50", np.median([r["U_EB"] for r in pilot["results"] if r["pilot_episodes_total"] == 50 and r["threshold"] == 0.05]) > 1000, True)
+for phrase in ("4.53 times", "25–100 episodes", "variance-adaptive empirical-Bernstein", "high false-rejection rates"):
+    chk("revised abstract contains: " + phrase, phrase in ab, True)
+for phrase in ("Vincent et al.", "RS-GAIL", "SPoRt", "Sensitivity to the onset threshold", "Sensitivity to pilot size", "Failure when cost sufficiency is violated", "Power to detect excess cost", "IS EB upper", "revision\\_study.py"):
+    chk("review response content in paper: " + phrase, phrase in tex, True)
+# ---------------- fresh held-out Safety-Gymnasium seed ----------------
+h3 = loadrev("heldout-pg1-seed3.json")
+chk("fresh seed identity and disjoint pools", (h3["training_seed"], h3["certificate_and_truth_seeds_disjoint"]), (3, True))
+chk("fresh seed pilot/certificate/truth denominators", (h3["pilot_episodes_per_condition"], h3["certificate_episodes_per_policy"], h3["truth_episodes_per_policy"]), (50, 400, 300))
+chk("fresh seed pilot selection", (h3["alphabet"]["window"], h3["selected_certificate"]["onset"], rr(h3["selected_certificate"]["eta"], 4)), (28, [3, 4], 0.0563))
+chk("fresh seed truth means", (rr(h3["baseline_truth_mean"], 2), rr(h3["candidate_truth_mean"], 2)), (33.76, 70.96))
+chk("fresh seed certificate and truth coverage", (rr(h3["selected_certificate"]["U_EB"], 2), h3["point_coverage"], h3["candidate_truth_ci_within_bound"]), (273.80, True, True))
+chk("fresh seed full-horizon episodes", all(v == 0 for v in h3["episode_length_summary"].values()), True)
+chk("fresh seed threshold stability", [r["onset"] for r in h3["threshold_sensitivity"] if r["rise_threshold"] in (0.025, 0.05, 0.1)], [[3, 4]] * 3)
+boot3 = h3["pilot_size_bootstrap"]
+chk("fresh seed pilot-size bootstrap rows", len(boot3), 80)
+chk("fresh seed pilot window matches", [sum(r["window"] == h3["alphabet"]["window"] for r in boot3 if r["pilot_total"] == n) for n in (10, 25, 50, 100)], [19, 20, 20, 20])
+chk("fresh seed pilot onset counts at size 50", sorted([sum(r["pilot_total"] == 50 and r["onset"] == onset for r in boot3) for onset in ([3, 4], [4, 5])]), [8, 8])
+raw3 = np.load(os.path.join(REV, "heldout-pg1-seed3.npz"))
+chk("fresh seed raw pilot sample count", (raw3["pilot_sigma0_observations"].shape[0], raw3["pilot_sigma15_observations"].shape[0]), (50, 50))
+chk("fresh seed certificate occupancy row sums", (int(raw3["a_certificate_counts"].sum(1).min()), int(raw3["a_certificate_counts"].sum(1).max()), int(raw3["b_certificate_counts"].sum(1).min()), int(raw3["b_certificate_counts"].sum(1).max())), (1000, 1000, 1000, 1000))
 sys.exit(0 if ok else 1)

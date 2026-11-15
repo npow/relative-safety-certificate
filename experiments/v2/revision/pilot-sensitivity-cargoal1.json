@@ -1,0 +1,7714 @@
+{
+  "task": "SafetyCarGoal1-v0",
+  "pilot_seed": 2026111501,
+  "evaluation_seeds": [
+    2026112501,
+    2026113501
+  ],
+  "evaluation_episodes_per_policy": 50,
+  "bootstrap_replicates_per_size": 20,
+  "pilot_sizes_total_episodes": [
+    10,
+    25,
+    50,
+    100
+  ],
+  "thresholds": [
+    0.025,
+    0.05,
+    0.1
+  ],
+  "full_pilot_reference": {
+    "window": 40,
+    "edges": [
+      0.7754898071289062,
+      0.8821495294570924,
+      0.9188181936740876,
+      0.9442611515522003,
+      0.9587278425693512,
+      0.9698580598831177,
+      0.9788682639598847
+    ],
+    "r2": 0.8159733546812148,
+    "risk_level_rates": [
+      0.0,
+      0.0,
+      0.0,
+      0.392,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  "J_A_reference_se": 10.039893111856829,
+  "J_B_reference_se": 8.03325843139887,
+  "resampling_note": "Pilot uncertainty is estimated by episode-level bootstrap from 50 fresh episodes in each pilot condition; the 100-episode reference pilot is not an independent validation set. Evaluation rollouts are fresh and independent of the pilot.",
+  "results": [
+    {
+      "pilot_episodes_total": 10,
+      "pilot_episodes_per_condition": [
+        5,
+        5
+      ],
+      "bootstrap_replicate": 0,
+      "threshold": 0.025,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.03898828378745489,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.3,
+        1.0,
+        1.0
+      ],
+      "r2": 0.9065462151217124,
+      "onset": [
+        4,
+        5
+      ],
+      "eta": 0.05,
+      "U_EB": 1308.7286824699395,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 10,
+      "pilot_episodes_per_condition": [
+        5,
+        5
+      ],
+      "bootstrap_replicate": 0,
+      "threshold": 0.05,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.03898828378745489,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.3,
+        1.0,
+        1.0
+      ],
+      "r2": 0.9065462151217124,
+      "onset": [
+        4,
+        5
+      ],
+      "eta": 0.05,
+      "U_EB": 1308.7286824699395,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 10,
+      "pilot_episodes_per_condition": [
+        5,
+        5
+      ],
+      "bootstrap_replicate": 0,
+      "threshold": 0.1,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.03898828378745489,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.3,
+        1.0,
+        1.0
+      ],
+      "r2": 0.9065462151217124,
+      "onset": [
+        4,
+        5
+      ],
+      "eta": 0.05,
+      "U_EB": 1308.7286824699395,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 10,
+      "pilot_episodes_per_condition": [
+        5,
+        5
+      ],
+      "bootstrap_replicate": 1,
+      "threshold": 0.025,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.031045413953917373,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.125,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.930431325780163,
+      "onset": [
+        3,
+        4
+      ],
+      "eta": 0.05,
+      "U_EB": 1314.586722075209,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 10,
+      "pilot_episodes_per_condition": [
+        5,
+        5
+      ],
+      "bootstrap_replicate": 1,
+      "threshold": 0.05,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.031045413953917373,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.125,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.930431325780163,
+      "onset": [
+        3,
+        4
+      ],
+      "eta": 0.05,
+      "U_EB": 1314.586722075209,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 10,
+      "pilot_episodes_per_condition": [
+        5,
+        5
+      ],
+      "bootstrap_replicate": 1,
+      "threshold": 0.1,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.031045413953917373,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.125,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.930431325780163,
+      "onset": [
+        3,
+        4
+      ],
+      "eta": 0.05,
+      "U_EB": 1314.586722075209,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 10,
+      "pilot_episodes_per_condition": [
+        5,
+        5
+      ],
+      "bootstrap_replicate": 2,
+      "threshold": 0.025,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.02133363911083768,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.125,
+        0.9,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8987962075210397,
+      "onset": [
+        3,
+        4,
+        5
+      ],
+      "eta": 0.05,
+      "U_EB": 1309.4654781683876,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 10,
+      "pilot_episodes_per_condition": [
+        5,
+        5
+      ],
+      "bootstrap_replicate": 2,
+      "threshold": 0.05,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.02133363911083768,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.125,
+        0.9,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8987962075210397,
+      "onset": [
+        3,
+        4,
+        5
+      ],
+      "eta": 0.05,
+      "U_EB": 1309.4654781683876,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 10,
+      "pilot_episodes_per_condition": [
+        5,
+        5
+      ],
+      "bootstrap_replicate": 2,
+      "threshold": 0.1,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.02133363911083768,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.125,
+        0.9,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8987962075210397,
+      "onset": [
+        3,
+        4
+      ],
+      "eta": 0.14999999999999997,
+      "U_EB": 1409.4654781683876,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 10,
+      "pilot_episodes_per_condition": [
+        5,
+        5
+      ],
+      "bootstrap_replicate": 3,
+      "threshold": 0.025,
+      "window": 41,
+      "window_matches_full_100_episode_pilot": false,
+      "edge_mae_vs_full_pilot": 0.009896961876324257,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.36,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8182277202726584,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1293.1899951996338,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 10,
+      "pilot_episodes_per_condition": [
+        5,
+        5
+      ],
+      "bootstrap_replicate": 3,
+      "threshold": 0.05,
+      "window": 41,
+      "window_matches_full_100_episode_pilot": false,
+      "edge_mae_vs_full_pilot": 0.009896961876324257,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.36,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8182277202726584,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1293.1899951996338,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 10,
+      "pilot_episodes_per_condition": [
+        5,
+        5
+      ],
+      "bootstrap_replicate": 3,
+      "threshold": 0.1,
+      "window": 41,
+      "window_matches_full_100_episode_pilot": false,
+      "edge_mae_vs_full_pilot": 0.009896961876324257,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.36,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8182277202726584,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1293.1899951996338,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 10,
+      "pilot_episodes_per_condition": [
+        5,
+        5
+      ],
+      "bootstrap_replicate": 4,
+      "threshold": 0.025,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.015837258185659144,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.465,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.80104008589406,
+      "onset": [
+        1,
+        2
+      ],
+      "eta": 0.05,
+      "U_EB": 1344.1961379242384,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 10,
+      "pilot_episodes_per_condition": [
+        5,
+        5
+      ],
+      "bootstrap_replicate": 4,
+      "threshold": 0.05,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.015837258185659144,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.465,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.80104008589406,
+      "onset": [
+        1,
+        2
+      ],
+      "eta": 0.05,
+      "U_EB": 1344.1961379242384,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 10,
+      "pilot_episodes_per_condition": [
+        5,
+        5
+      ],
+      "bootstrap_replicate": 4,
+      "threshold": 0.1,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.015837258185659144,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.465,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.80104008589406,
+      "onset": [
+        1,
+        2
+      ],
+      "eta": 0.05,
+      "U_EB": 1344.1961379242384,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 10,
+      "pilot_episodes_per_condition": [
+        5,
+        5
+      ],
+      "bootstrap_replicate": 5,
+      "threshold": 0.025,
+      "window": 38,
+      "window_matches_full_100_episode_pilot": false,
+      "edge_mae_vs_full_pilot": 0.01761664433138713,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.41,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8154273440689153,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1370.1283440393422,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 10,
+      "pilot_episodes_per_condition": [
+        5,
+        5
+      ],
+      "bootstrap_replicate": 5,
+      "threshold": 0.05,
+      "window": 38,
+      "window_matches_full_100_episode_pilot": false,
+      "edge_mae_vs_full_pilot": 0.01761664433138713,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.41,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8154273440689153,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1370.1283440393422,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 10,
+      "pilot_episodes_per_condition": [
+        5,
+        5
+      ],
+      "bootstrap_replicate": 5,
+      "threshold": 0.1,
+      "window": 38,
+      "window_matches_full_100_episode_pilot": false,
+      "edge_mae_vs_full_pilot": 0.01761664433138713,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.41,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8154273440689153,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1370.1283440393422,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 10,
+      "pilot_episodes_per_condition": [
+        5,
+        5
+      ],
+      "bootstrap_replicate": 6,
+      "threshold": 0.025,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.006269092389515484,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.53,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8237028072373147,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1283.5384654508143,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 10,
+      "pilot_episodes_per_condition": [
+        5,
+        5
+      ],
+      "bootstrap_replicate": 6,
+      "threshold": 0.05,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.006269092389515484,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.53,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8237028072373147,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1283.5384654508143,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 10,
+      "pilot_episodes_per_condition": [
+        5,
+        5
+      ],
+      "bootstrap_replicate": 6,
+      "threshold": 0.1,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.006269092389515484,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.53,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8237028072373147,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1283.5384654508143,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 10,
+      "pilot_episodes_per_condition": [
+        5,
+        5
+      ],
+      "bootstrap_replicate": 7,
+      "threshold": 0.025,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.025128989900861463,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.7,
+        1.0,
+        1.0
+      ],
+      "r2": 0.9200639488409272,
+      "onset": [
+        4,
+        5
+      ],
+      "eta": 0.05,
+      "U_EB": 1267.2258968574247,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 10,
+      "pilot_episodes_per_condition": [
+        5,
+        5
+      ],
+      "bootstrap_replicate": 7,
+      "threshold": 0.05,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.025128989900861463,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.7,
+        1.0,
+        1.0
+      ],
+      "r2": 0.9200639488409272,
+      "onset": [
+        4,
+        5
+      ],
+      "eta": 0.05,
+      "U_EB": 1267.2258968574247,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 10,
+      "pilot_episodes_per_condition": [
+        5,
+        5
+      ],
+      "bootstrap_replicate": 7,
+      "threshold": 0.1,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.025128989900861463,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.7,
+        1.0,
+        1.0
+      ],
+      "r2": 0.9200639488409272,
+      "onset": [
+        4,
+        5
+      ],
+      "eta": 0.05,
+      "U_EB": 1267.2258968574247,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 10,
+      "pilot_episodes_per_condition": [
+        5,
+        5
+      ],
+      "bootstrap_replicate": 8,
+      "threshold": 0.025,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.02113770399774825,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.57,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8305863812463063,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1345.375139622541,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 10,
+      "pilot_episodes_per_condition": [
+        5,
+        5
+      ],
+      "bootstrap_replicate": 8,
+      "threshold": 0.05,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.02113770399774825,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.57,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8305863812463063,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1345.375139622541,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 10,
+      "pilot_episodes_per_condition": [
+        5,
+        5
+      ],
+      "bootstrap_replicate": 8,
+      "threshold": 0.1,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.02113770399774825,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.57,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8305863812463063,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1345.375139622541,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 10,
+      "pilot_episodes_per_condition": [
+        5,
+        5
+      ],
+      "bootstrap_replicate": 9,
+      "threshold": 0.025,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.019957342488425147,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.75,
+        1.0,
+        1.0
+      ],
+      "r2": 0.9298901612526291,
+      "onset": [
+        4,
+        5
+      ],
+      "eta": 0.05,
+      "U_EB": 1262.0311817646057,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 10,
+      "pilot_episodes_per_condition": [
+        5,
+        5
+      ],
+      "bootstrap_replicate": 9,
+      "threshold": 0.05,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.019957342488425147,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.75,
+        1.0,
+        1.0
+      ],
+      "r2": 0.9298901612526291,
+      "onset": [
+        4,
+        5
+      ],
+      "eta": 0.05,
+      "U_EB": 1262.0311817646057,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 10,
+      "pilot_episodes_per_condition": [
+        5,
+        5
+      ],
+      "bootstrap_replicate": 9,
+      "threshold": 0.1,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.019957342488425147,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.75,
+        1.0,
+        1.0
+      ],
+      "r2": 0.9298901612526291,
+      "onset": [
+        4,
+        5
+      ],
+      "eta": 0.05,
+      "U_EB": 1262.0311817646057,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 10,
+      "pilot_episodes_per_condition": [
+        5,
+        5
+      ],
+      "bootstrap_replicate": 10,
+      "threshold": 0.025,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.027641301836286276,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.64,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.831952386509511,
+      "onset": [
+        1,
+        2
+      ],
+      "eta": 0.05,
+      "U_EB": 1286.2149063271522,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 10,
+      "pilot_episodes_per_condition": [
+        5,
+        5
+      ],
+      "bootstrap_replicate": 10,
+      "threshold": 0.05,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.027641301836286276,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.64,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.831952386509511,
+      "onset": [
+        1,
+        2
+      ],
+      "eta": 0.05,
+      "U_EB": 1286.2149063271522,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 10,
+      "pilot_episodes_per_condition": [
+        5,
+        5
+      ],
+      "bootstrap_replicate": 10,
+      "threshold": 0.1,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.027641301836286276,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.64,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.831952386509511,
+      "onset": [
+        1,
+        2
+      ],
+      "eta": 0.05,
+      "U_EB": 1286.2149063271522,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 10,
+      "pilot_episodes_per_condition": [
+        5,
+        5
+      ],
+      "bootstrap_replicate": 11,
+      "threshold": 0.025,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.015050193411963342,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.545,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8101695823501155,
+      "onset": [
+        1,
+        2
+      ],
+      "eta": 0.05,
+      "U_EB": 1333.7829479055627,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 10,
+      "pilot_episodes_per_condition": [
+        5,
+        5
+      ],
+      "bootstrap_replicate": 11,
+      "threshold": 0.05,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.015050193411963342,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.545,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8101695823501155,
+      "onset": [
+        1,
+        2
+      ],
+      "eta": 0.05,
+      "U_EB": 1333.7829479055627,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 10,
+      "pilot_episodes_per_condition": [
+        5,
+        5
+      ],
+      "bootstrap_replicate": 11,
+      "threshold": 0.1,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.015050193411963342,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.545,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8101695823501155,
+      "onset": [
+        1,
+        2
+      ],
+      "eta": 0.05,
+      "U_EB": 1333.7829479055627,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 10,
+      "pilot_episodes_per_condition": [
+        5,
+        5
+      ],
+      "bootstrap_replicate": 12,
+      "threshold": 0.025,
+      "window": 39,
+      "window_matches_full_100_episode_pilot": false,
+      "edge_mae_vs_full_pilot": 0.025744213887623397,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.85,
+        1.0
+      ],
+      "r2": 0.8862432824696976,
+      "onset": [
+        4,
+        5,
+        6
+      ],
+      "eta": 0.05,
+      "U_EB": 1309.1568644785139,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 10,
+      "pilot_episodes_per_condition": [
+        5,
+        5
+      ],
+      "bootstrap_replicate": 12,
+      "threshold": 0.05,
+      "window": 39,
+      "window_matches_full_100_episode_pilot": false,
+      "edge_mae_vs_full_pilot": 0.025744213887623397,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.85,
+        1.0
+      ],
+      "r2": 0.8862432824696976,
+      "onset": [
+        4,
+        5,
+        6
+      ],
+      "eta": 0.05,
+      "U_EB": 1309.1568644785139,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 10,
+      "pilot_episodes_per_condition": [
+        5,
+        5
+      ],
+      "bootstrap_replicate": 12,
+      "threshold": 0.1,
+      "window": 39,
+      "window_matches_full_100_episode_pilot": false,
+      "edge_mae_vs_full_pilot": 0.025744213887623397,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.85,
+        1.0
+      ],
+      "r2": 0.8862432824696976,
+      "onset": [
+        4,
+        5,
+        6
+      ],
+      "eta": 0.05,
+      "U_EB": 1309.1568644785139,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 10,
+      "pilot_episodes_per_condition": [
+        5,
+        5
+      ],
+      "bootstrap_replicate": 13,
+      "threshold": 0.025,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.012911207846232817,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.09,
+        0.975,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.9102948085506225,
+      "onset": [
+        2,
+        3,
+        4
+      ],
+      "eta": 0.05,
+      "U_EB": 1379.438975240943,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 10,
+      "pilot_episodes_per_condition": [
+        5,
+        5
+      ],
+      "bootstrap_replicate": 13,
+      "threshold": 0.05,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.012911207846232817,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.09,
+        0.975,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.9102948085506225,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.07500000000000002,
+      "U_EB": 1404.4389752409427,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 10,
+      "pilot_episodes_per_condition": [
+        5,
+        5
+      ],
+      "bootstrap_replicate": 13,
+      "threshold": 0.1,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.012911207846232817,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.09,
+        0.975,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.9102948085506225,
+      "onset": [
+        3
+      ],
+      "eta": 0.16500000000000004,
+      "U_EB": 1361.1252316974576,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 10,
+      "pilot_episodes_per_condition": [
+        5,
+        5
+      ],
+      "bootstrap_replicate": 14,
+      "threshold": 0.025,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.012345060706138595,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.1890547263681592,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8530321712434783,
+      "onset": [
+        1,
+        2
+      ],
+      "eta": 0.05,
+      "U_EB": 1386.5277588988213,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 10,
+      "pilot_episodes_per_condition": [
+        5,
+        5
+      ],
+      "bootstrap_replicate": 14,
+      "threshold": 0.05,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.012345060706138595,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.1890547263681592,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8530321712434783,
+      "onset": [
+        1,
+        2
+      ],
+      "eta": 0.05,
+      "U_EB": 1386.5277588988213,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 10,
+      "pilot_episodes_per_condition": [
+        5,
+        5
+      ],
+      "bootstrap_replicate": 14,
+      "threshold": 0.1,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.012345060706138595,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.1890547263681592,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8530321712434783,
+      "onset": [
+        1,
+        2
+      ],
+      "eta": 0.05,
+      "U_EB": 1386.5277588988213,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 10,
+      "pilot_episodes_per_condition": [
+        5,
+        5
+      ],
+      "bootstrap_replicate": 15,
+      "threshold": 0.025,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.06304701004709516,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.7
+      ],
+      "r2": 0.6978851963746222,
+      "onset": [
+        6
+      ],
+      "eta": 0.05,
+      "U_EB": 1284.8023117768525,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 10,
+      "pilot_episodes_per_condition": [
+        5,
+        5
+      ],
+      "bootstrap_replicate": 15,
+      "threshold": 0.05,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.06304701004709516,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.7
+      ],
+      "r2": 0.6978851963746222,
+      "onset": [
+        6
+      ],
+      "eta": 0.05,
+      "U_EB": 1284.8023117768525,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 10,
+      "pilot_episodes_per_condition": [
+        5,
+        5
+      ],
+      "bootstrap_replicate": 15,
+      "threshold": 0.1,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.06304701004709516,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.7
+      ],
+      "r2": 0.6978851963746222,
+      "onset": [
+        6
+      ],
+      "eta": 0.05,
+      "U_EB": 1284.8023117768525,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 10,
+      "pilot_episodes_per_condition": [
+        5,
+        5
+      ],
+      "bootstrap_replicate": 16,
+      "threshold": 0.025,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.027057298762457722,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.3,
+        1.0,
+        1.0
+      ],
+      "r2": 0.9065462151217124,
+      "onset": [
+        4,
+        5
+      ],
+      "eta": 0.05,
+      "U_EB": 1285.6850561274,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 10,
+      "pilot_episodes_per_condition": [
+        5,
+        5
+      ],
+      "bootstrap_replicate": 16,
+      "threshold": 0.05,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.027057298762457722,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.3,
+        1.0,
+        1.0
+      ],
+      "r2": 0.9065462151217124,
+      "onset": [
+        4,
+        5
+      ],
+      "eta": 0.05,
+      "U_EB": 1285.6850561274,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 10,
+      "pilot_episodes_per_condition": [
+        5,
+        5
+      ],
+      "bootstrap_replicate": 16,
+      "threshold": 0.1,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.027057298762457722,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.3,
+        1.0,
+        1.0
+      ],
+      "r2": 0.9065462151217124,
+      "onset": [
+        4,
+        5
+      ],
+      "eta": 0.05,
+      "U_EB": 1285.6850561274,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 10,
+      "pilot_episodes_per_condition": [
+        5,
+        5
+      ],
+      "bootstrap_replicate": 17,
+      "threshold": 0.025,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.029013644627162365,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.425,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8679687447238149,
+      "onset": [
+        3,
+        4
+      ],
+      "eta": 0.05,
+      "U_EB": 1287.364472015349,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 10,
+      "pilot_episodes_per_condition": [
+        5,
+        5
+      ],
+      "bootstrap_replicate": 17,
+      "threshold": 0.05,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.029013644627162365,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.425,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8679687447238149,
+      "onset": [
+        3,
+        4
+      ],
+      "eta": 0.05,
+      "U_EB": 1287.364472015349,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 10,
+      "pilot_episodes_per_condition": [
+        5,
+        5
+      ],
+      "bootstrap_replicate": 17,
+      "threshold": 0.1,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.029013644627162365,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.425,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8679687447238149,
+      "onset": [
+        3,
+        4
+      ],
+      "eta": 0.05,
+      "U_EB": 1287.364472015349,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 10,
+      "pilot_episodes_per_condition": [
+        5,
+        5
+      ],
+      "bootstrap_replicate": 18,
+      "threshold": 0.025,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.009854845660073441,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.53,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8237028072373147,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1337.1973299574765,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 10,
+      "pilot_episodes_per_condition": [
+        5,
+        5
+      ],
+      "bootstrap_replicate": 18,
+      "threshold": 0.05,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.009854845660073441,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.53,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8237028072373147,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1337.1973299574765,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 10,
+      "pilot_episodes_per_condition": [
+        5,
+        5
+      ],
+      "bootstrap_replicate": 18,
+      "threshold": 0.1,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.009854845660073441,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.53,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8237028072373147,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1337.1973299574765,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 10,
+      "pilot_episodes_per_condition": [
+        5,
+        5
+      ],
+      "bootstrap_replicate": 19,
+      "threshold": 0.025,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.029768340928213947,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.4,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8975409836065573,
+      "onset": [
+        4,
+        5
+      ],
+      "eta": 0.05,
+      "U_EB": 1279.6400738537536,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 10,
+      "pilot_episodes_per_condition": [
+        5,
+        5
+      ],
+      "bootstrap_replicate": 19,
+      "threshold": 0.05,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.029768340928213947,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.4,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8975409836065573,
+      "onset": [
+        4,
+        5
+      ],
+      "eta": 0.05,
+      "U_EB": 1279.6400738537536,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 10,
+      "pilot_episodes_per_condition": [
+        5,
+        5
+      ],
+      "bootstrap_replicate": 19,
+      "threshold": 0.1,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.029768340928213947,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.4,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8975409836065573,
+      "onset": [
+        4,
+        5
+      ],
+      "eta": 0.05,
+      "U_EB": 1279.6400738537536,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 25,
+      "pilot_episodes_per_condition": [
+        12,
+        13
+      ],
+      "bootstrap_replicate": 0,
+      "threshold": 0.025,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.012527810505458275,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.034,
+        0.988,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.9579626021986257,
+      "onset": [
+        1,
+        2
+      ],
+      "eta": 0.06200000000000001,
+      "U_EB": 1409.270267941434,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 25,
+      "pilot_episodes_per_condition": [
+        12,
+        13
+      ],
+      "bootstrap_replicate": 0,
+      "threshold": 0.05,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.012527810505458275,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.034,
+        0.988,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.9579626021986257,
+      "onset": [
+        2
+      ],
+      "eta": 0.09600000000000002,
+      "U_EB": 1297.8782880194162,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 25,
+      "pilot_episodes_per_condition": [
+        12,
+        13
+      ],
+      "bootstrap_replicate": 0,
+      "threshold": 0.1,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.012527810505458275,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.034,
+        0.988,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.9579626021986257,
+      "onset": [
+        2
+      ],
+      "eta": 0.09600000000000002,
+      "U_EB": 1297.8782880194162,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 25,
+      "pilot_episodes_per_condition": [
+        12,
+        13
+      ],
+      "bootstrap_replicate": 1,
+      "threshold": 0.025,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.0070278446163450125,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.016,
+        0.93,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.9555107321947102,
+      "onset": [
+        3,
+        4
+      ],
+      "eta": 0.066,
+      "U_EB": 1273.8728879238422,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 25,
+      "pilot_episodes_per_condition": [
+        12,
+        13
+      ],
+      "bootstrap_replicate": 1,
+      "threshold": 0.05,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.0070278446163450125,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.016,
+        0.93,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.9555107321947102,
+      "onset": [
+        3,
+        4
+      ],
+      "eta": 0.066,
+      "U_EB": 1273.8728879238422,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 25,
+      "pilot_episodes_per_condition": [
+        12,
+        13
+      ],
+      "bootstrap_replicate": 1,
+      "threshold": 0.1,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.0070278446163450125,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.016,
+        0.93,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.9555107321947102,
+      "onset": [
+        3
+      ],
+      "eta": 0.13599999999999995,
+      "U_EB": 1343.872887923842,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 25,
+      "pilot_episodes_per_condition": [
+        12,
+        13
+      ],
+      "bootstrap_replicate": 2,
+      "threshold": 0.025,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.008033625653811906,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.002,
+        0.852,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.922739729672201,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.052000000000000005,
+      "U_EB": 1282.4021877241012,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 25,
+      "pilot_episodes_per_condition": [
+        12,
+        13
+      ],
+      "bootstrap_replicate": 2,
+      "threshold": 0.05,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.008033625653811906,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.002,
+        0.852,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.922739729672201,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.052000000000000005,
+      "U_EB": 1282.4021877241012,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 25,
+      "pilot_episodes_per_condition": [
+        12,
+        13
+      ],
+      "bootstrap_replicate": 2,
+      "threshold": 0.1,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.008033625653811906,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.002,
+        0.852,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.922739729672201,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.052000000000000005,
+      "U_EB": 1282.4021877241012,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 25,
+      "pilot_episodes_per_condition": [
+        12,
+        13
+      ],
+      "bootstrap_replicate": 3,
+      "threshold": 0.025,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.003621164815766496,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.244,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.841882108979146,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1314.586722075209,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 25,
+      "pilot_episodes_per_condition": [
+        12,
+        13
+      ],
+      "bootstrap_replicate": 3,
+      "threshold": 0.05,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.003621164815766496,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.244,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.841882108979146,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1314.586722075209,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 25,
+      "pilot_episodes_per_condition": [
+        12,
+        13
+      ],
+      "bootstrap_replicate": 3,
+      "threshold": 0.1,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.003621164815766496,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.244,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.841882108979146,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1314.586722075209,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 25,
+      "pilot_episodes_per_condition": [
+        12,
+        13
+      ],
+      "bootstrap_replicate": 4,
+      "threshold": 0.025,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.024440386039870057,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.02,
+        0.74,
+        1.0,
+        1.0
+      ],
+      "r2": 0.9143084216025658,
+      "onset": [
+        4,
+        5
+      ],
+      "eta": 0.07,
+      "U_EB": 1281.8527846334468,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 25,
+      "pilot_episodes_per_condition": [
+        12,
+        13
+      ],
+      "bootstrap_replicate": 4,
+      "threshold": 0.05,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.024440386039870057,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.02,
+        0.74,
+        1.0,
+        1.0
+      ],
+      "r2": 0.9143084216025658,
+      "onset": [
+        4,
+        5
+      ],
+      "eta": 0.07,
+      "U_EB": 1281.8527846334468,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 25,
+      "pilot_episodes_per_condition": [
+        12,
+        13
+      ],
+      "bootstrap_replicate": 4,
+      "threshold": 0.1,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.024440386039870057,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.02,
+        0.74,
+        1.0,
+        1.0
+      ],
+      "r2": 0.9143084216025658,
+      "onset": [
+        4,
+        5
+      ],
+      "eta": 0.07,
+      "U_EB": 1281.8527846334468,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 25,
+      "pilot_episodes_per_condition": [
+        12,
+        13
+      ],
+      "bootstrap_replicate": 5,
+      "threshold": 0.025,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.028941156097820837,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.26,
+        1.0,
+        1.0
+      ],
+      "r2": 0.9128987688123268,
+      "onset": [
+        4,
+        5
+      ],
+      "eta": 0.05,
+      "U_EB": 1288.0551594629992,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 25,
+      "pilot_episodes_per_condition": [
+        12,
+        13
+      ],
+      "bootstrap_replicate": 5,
+      "threshold": 0.05,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.028941156097820837,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.26,
+        1.0,
+        1.0
+      ],
+      "r2": 0.9128987688123268,
+      "onset": [
+        4,
+        5
+      ],
+      "eta": 0.05,
+      "U_EB": 1288.0551594629992,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 25,
+      "pilot_episodes_per_condition": [
+        12,
+        13
+      ],
+      "bootstrap_replicate": 5,
+      "threshold": 0.1,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.028941156097820837,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.26,
+        1.0,
+        1.0
+      ],
+      "r2": 0.9128987688123268,
+      "onset": [
+        4,
+        5
+      ],
+      "eta": 0.05,
+      "U_EB": 1288.0551594629992,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 25,
+      "pilot_episodes_per_condition": [
+        12,
+        13
+      ],
+      "bootstrap_replicate": 6,
+      "threshold": 0.025,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.009080581324441086,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.3944223107569721,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.815327044819952,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1340.0988832442035,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 25,
+      "pilot_episodes_per_condition": [
+        12,
+        13
+      ],
+      "bootstrap_replicate": 6,
+      "threshold": 0.05,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.009080581324441086,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.3944223107569721,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.815327044819952,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1340.0988832442035,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 25,
+      "pilot_episodes_per_condition": [
+        12,
+        13
+      ],
+      "bootstrap_replicate": 6,
+      "threshold": 0.1,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.009080581324441086,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.3944223107569721,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.815327044819952,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1340.0988832442035,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 25,
+      "pilot_episodes_per_condition": [
+        12,
+        13
+      ],
+      "bootstrap_replicate": 7,
+      "threshold": 0.025,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.005922410573278168,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.648,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8491632879356024,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1287.656401305642,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 25,
+      "pilot_episodes_per_condition": [
+        12,
+        13
+      ],
+      "bootstrap_replicate": 7,
+      "threshold": 0.05,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.005922410573278168,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.648,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8491632879356024,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1287.656401305642,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 25,
+      "pilot_episodes_per_condition": [
+        12,
+        13
+      ],
+      "bootstrap_replicate": 7,
+      "threshold": 0.1,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.005922410573278168,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.648,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8491632879356024,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1287.656401305642,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 25,
+      "pilot_episodes_per_condition": [
+        12,
+        13
+      ],
+      "bootstrap_replicate": 8,
+      "threshold": 0.025,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.006988768918173667,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.188,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.863386863174233,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1339.7486722674876,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 25,
+      "pilot_episodes_per_condition": [
+        12,
+        13
+      ],
+      "bootstrap_replicate": 8,
+      "threshold": 0.05,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.006988768918173667,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.188,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.863386863174233,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1339.7486722674876,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 25,
+      "pilot_episodes_per_condition": [
+        12,
+        13
+      ],
+      "bootstrap_replicate": 8,
+      "threshold": 0.1,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.006988768918173667,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.188,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.863386863174233,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1339.7486722674876,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 25,
+      "pilot_episodes_per_condition": [
+        12,
+        13
+      ],
+      "bootstrap_replicate": 9,
+      "threshold": 0.025,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.019799371787479942,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.0642570281124498,
+        0.98,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.932530184494428,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.07000000000000002,
+      "U_EB": 1404.7451368116322,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 25,
+      "pilot_episodes_per_condition": [
+        12,
+        13
+      ],
+      "bootstrap_replicate": 9,
+      "threshold": 0.05,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.019799371787479942,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.0642570281124498,
+        0.98,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.932530184494428,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.07000000000000002,
+      "U_EB": 1404.7451368116322,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 25,
+      "pilot_episodes_per_condition": [
+        12,
+        13
+      ],
+      "bootstrap_replicate": 9,
+      "threshold": 0.1,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.019799371787479942,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.0642570281124498,
+        0.98,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.932530184494428,
+      "onset": [
+        3
+      ],
+      "eta": 0.13425702811244983,
+      "U_EB": 1332.1000158668662,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 25,
+      "pilot_episodes_per_condition": [
+        12,
+        13
+      ],
+      "bootstrap_replicate": 10,
+      "threshold": 0.025,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.01952525837080819,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.23,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8358224175172196,
+      "onset": [
+        1,
+        2
+      ],
+      "eta": 0.05,
+      "U_EB": 1409.0431611768975,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 25,
+      "pilot_episodes_per_condition": [
+        12,
+        13
+      ],
+      "bootstrap_replicate": 10,
+      "threshold": 0.05,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.01952525837080819,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.23,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8358224175172196,
+      "onset": [
+        1,
+        2
+      ],
+      "eta": 0.05,
+      "U_EB": 1409.0431611768975,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 25,
+      "pilot_episodes_per_condition": [
+        12,
+        13
+      ],
+      "bootstrap_replicate": 10,
+      "threshold": 0.1,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.01952525837080819,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.23,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8358224175172196,
+      "onset": [
+        1,
+        2
+      ],
+      "eta": 0.05,
+      "U_EB": 1409.0431611768975,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 25,
+      "pilot_episodes_per_condition": [
+        12,
+        13
+      ],
+      "bootstrap_replicate": 11,
+      "threshold": 0.025,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.007292846781866892,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.492,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.818978359332766,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1336.2284757174493,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 25,
+      "pilot_episodes_per_condition": [
+        12,
+        13
+      ],
+      "bootstrap_replicate": 11,
+      "threshold": 0.05,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.007292846781866892,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.492,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.818978359332766,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1336.2284757174493,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 25,
+      "pilot_episodes_per_condition": [
+        12,
+        13
+      ],
+      "bootstrap_replicate": 11,
+      "threshold": 0.1,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.007292846781866892,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.492,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.818978359332766,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1336.2284757174493,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 25,
+      "pilot_episodes_per_condition": [
+        12,
+        13
+      ],
+      "bootstrap_replicate": 12,
+      "threshold": 0.025,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.021515755227633906,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.4489795918367347,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8989578677783071,
+      "onset": [
+        4,
+        5
+      ],
+      "eta": 0.05,
+      "U_EB": 1280.6002973611146,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 25,
+      "pilot_episodes_per_condition": [
+        12,
+        13
+      ],
+      "bootstrap_replicate": 12,
+      "threshold": 0.05,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.021515755227633906,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.4489795918367347,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8989578677783071,
+      "onset": [
+        4,
+        5
+      ],
+      "eta": 0.05,
+      "U_EB": 1280.6002973611146,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 25,
+      "pilot_episodes_per_condition": [
+        12,
+        13
+      ],
+      "bootstrap_replicate": 12,
+      "threshold": 0.1,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.021515755227633906,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.4489795918367347,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8989578677783071,
+      "onset": [
+        4,
+        5
+      ],
+      "eta": 0.05,
+      "U_EB": 1280.6002973611146,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 25,
+      "pilot_episodes_per_condition": [
+        12,
+        13
+      ],
+      "bootstrap_replicate": 13,
+      "threshold": 0.025,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.008484167116028936,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.6947791164658634,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.86392495698588,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1294.6462008509598,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 25,
+      "pilot_episodes_per_condition": [
+        12,
+        13
+      ],
+      "bootstrap_replicate": 13,
+      "threshold": 0.05,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.008484167116028936,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.6947791164658634,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.86392495698588,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1294.6462008509598,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 25,
+      "pilot_episodes_per_condition": [
+        12,
+        13
+      ],
+      "bootstrap_replicate": 13,
+      "threshold": 0.1,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.008484167116028936,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.6947791164658634,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.86392495698588,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1294.6462008509598,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 25,
+      "pilot_episodes_per_condition": [
+        12,
+        13
+      ],
+      "bootstrap_replicate": 14,
+      "threshold": 0.025,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.022539172087396895,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.51,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8704643069296154,
+      "onset": [
+        3,
+        4
+      ],
+      "eta": 0.05,
+      "U_EB": 1285.039630274016,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 25,
+      "pilot_episodes_per_condition": [
+        12,
+        13
+      ],
+      "bootstrap_replicate": 14,
+      "threshold": 0.05,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.022539172087396895,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.51,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8704643069296154,
+      "onset": [
+        3,
+        4
+      ],
+      "eta": 0.05,
+      "U_EB": 1285.039630274016,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 25,
+      "pilot_episodes_per_condition": [
+        12,
+        13
+      ],
+      "bootstrap_replicate": 14,
+      "threshold": 0.1,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.022539172087396895,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.51,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8704643069296154,
+      "onset": [
+        3,
+        4
+      ],
+      "eta": 0.05,
+      "U_EB": 1285.039630274016,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 25,
+      "pilot_episodes_per_condition": [
+        12,
+        13
+      ],
+      "bootstrap_replicate": 15,
+      "threshold": 0.025,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.009507137707301558,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.684,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8601491990334984,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1288.8669423951533,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 25,
+      "pilot_episodes_per_condition": [
+        12,
+        13
+      ],
+      "bootstrap_replicate": 15,
+      "threshold": 0.05,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.009507137707301558,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.684,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8601491990334984,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1288.8669423951533,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 25,
+      "pilot_episodes_per_condition": [
+        12,
+        13
+      ],
+      "bootstrap_replicate": 15,
+      "threshold": 0.1,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.009507137707301558,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.684,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8601491990334984,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1288.8669423951533,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 25,
+      "pilot_episodes_per_condition": [
+        12,
+        13
+      ],
+      "bootstrap_replicate": 16,
+      "threshold": 0.025,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.004010985493659984,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.002,
+        0.796,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8984273504273504,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.052000000000000005,
+      "U_EB": 1281.6982728959035,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 25,
+      "pilot_episodes_per_condition": [
+        12,
+        13
+      ],
+      "bootstrap_replicate": 16,
+      "threshold": 0.05,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.004010985493659984,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.002,
+        0.796,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8984273504273504,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.052000000000000005,
+      "U_EB": 1281.6982728959035,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 25,
+      "pilot_episodes_per_condition": [
+        12,
+        13
+      ],
+      "bootstrap_replicate": 16,
+      "threshold": 0.1,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.004010985493659984,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.002,
+        0.796,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8984273504273504,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.052000000000000005,
+      "U_EB": 1281.6982728959035,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 25,
+      "pilot_episodes_per_condition": [
+        12,
+        13
+      ],
+      "bootstrap_replicate": 17,
+      "threshold": 0.025,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.006960929632186863,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.2589641434262948,
+        0.99,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8329577373811311,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.06000000000000001,
+      "U_EB": 1319.8279738264791,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 25,
+      "pilot_episodes_per_condition": [
+        12,
+        13
+      ],
+      "bootstrap_replicate": 17,
+      "threshold": 0.05,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.006960929632186863,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.2589641434262948,
+        0.99,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8329577373811311,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.06000000000000001,
+      "U_EB": 1319.8279738264791,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 25,
+      "pilot_episodes_per_condition": [
+        12,
+        13
+      ],
+      "bootstrap_replicate": 17,
+      "threshold": 0.1,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.006960929632186863,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.2589641434262948,
+        0.99,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8329577373811311,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.06000000000000001,
+      "U_EB": 1319.8279738264791,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 25,
+      "pilot_episodes_per_condition": [
+        12,
+        13
+      ],
+      "bootstrap_replicate": 18,
+      "threshold": 0.025,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.012359292932919057,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.9,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.960609243697479,
+      "onset": [
+        3,
+        4
+      ],
+      "eta": 0.05,
+      "U_EB": 1263.9252709751815,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 25,
+      "pilot_episodes_per_condition": [
+        12,
+        13
+      ],
+      "bootstrap_replicate": 18,
+      "threshold": 0.05,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.012359292932919057,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.9,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.960609243697479,
+      "onset": [
+        3,
+        4
+      ],
+      "eta": 0.05,
+      "U_EB": 1263.9252709751815,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 25,
+      "pilot_episodes_per_condition": [
+        12,
+        13
+      ],
+      "bootstrap_replicate": 18,
+      "threshold": 0.1,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.012359292932919057,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.9,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.960609243697479,
+      "onset": [
+        3
+      ],
+      "eta": 0.14999999999999997,
+      "U_EB": 1363.9252709751815,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 25,
+      "pilot_episodes_per_condition": [
+        12,
+        13
+      ],
+      "bootstrap_replicate": 19,
+      "threshold": 0.025,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.007735281246049021,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.79,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.9240773267164519,
+      "onset": [
+        3,
+        4
+      ],
+      "eta": 0.05,
+      "U_EB": 1270.3638357616028,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 25,
+      "pilot_episodes_per_condition": [
+        12,
+        13
+      ],
+      "bootstrap_replicate": 19,
+      "threshold": 0.05,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.007735281246049021,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.79,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.9240773267164519,
+      "onset": [
+        3,
+        4
+      ],
+      "eta": 0.05,
+      "U_EB": 1270.3638357616028,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 25,
+      "pilot_episodes_per_condition": [
+        12,
+        13
+      ],
+      "bootstrap_replicate": 19,
+      "threshold": 0.1,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.007735281246049021,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.79,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.9240773267164519,
+      "onset": [
+        3,
+        4
+      ],
+      "eta": 0.05,
+      "U_EB": 1270.3638357616028,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 50,
+      "pilot_episodes_per_condition": [
+        25,
+        25
+      ],
+      "bootstrap_replicate": 0,
+      "threshold": 0.025,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.011516619665282137,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.13,
+        0.9949748743718593,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8918714526335464,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05502512562814073,
+      "U_EB": 1391.4771396521667,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 50,
+      "pilot_episodes_per_condition": [
+        25,
+        25
+      ],
+      "bootstrap_replicate": 0,
+      "threshold": 0.05,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.011516619665282137,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.13,
+        0.9949748743718593,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8918714526335464,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05502512562814073,
+      "U_EB": 1391.4771396521667,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 50,
+      "pilot_episodes_per_condition": [
+        25,
+        25
+      ],
+      "bootstrap_replicate": 0,
+      "threshold": 0.1,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.011516619665282137,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.13,
+        0.9949748743718593,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8918714526335464,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05502512562814073,
+      "U_EB": 1391.4771396521667,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 50,
+      "pilot_episodes_per_condition": [
+        25,
+        25
+      ],
+      "bootstrap_replicate": 1,
+      "threshold": 0.025,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.021002186196190986,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.002,
+        0.535,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8703142120067376,
+      "onset": [
+        3,
+        4
+      ],
+      "eta": 0.052000000000000005,
+      "U_EB": 1281.636121958376,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 50,
+      "pilot_episodes_per_condition": [
+        25,
+        25
+      ],
+      "bootstrap_replicate": 1,
+      "threshold": 0.05,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.021002186196190986,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.002,
+        0.535,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8703142120067376,
+      "onset": [
+        3,
+        4
+      ],
+      "eta": 0.052000000000000005,
+      "U_EB": 1281.636121958376,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 50,
+      "pilot_episodes_per_condition": [
+        25,
+        25
+      ],
+      "bootstrap_replicate": 1,
+      "threshold": 0.1,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.021002186196190986,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.002,
+        0.535,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8703142120067376,
+      "onset": [
+        3,
+        4
+      ],
+      "eta": 0.052000000000000005,
+      "U_EB": 1281.636121958376,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 50,
+      "pilot_episodes_per_condition": [
+        25,
+        25
+      ],
+      "bootstrap_replicate": 2,
+      "threshold": 0.025,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.0044997446026121225,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.318,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8238418615274674,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1346.9591706889223,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 50,
+      "pilot_episodes_per_condition": [
+        25,
+        25
+      ],
+      "bootstrap_replicate": 2,
+      "threshold": 0.05,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.0044997446026121225,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.318,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8238418615274674,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1346.9591706889223,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 50,
+      "pilot_episodes_per_condition": [
+        25,
+        25
+      ],
+      "bootstrap_replicate": 2,
+      "threshold": 0.1,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.0044997446026121225,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.318,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8238418615274674,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1346.9591706889223,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 50,
+      "pilot_episodes_per_condition": [
+        25,
+        25
+      ],
+      "bootstrap_replicate": 3,
+      "threshold": 0.025,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.005464056219373435,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.13,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8939178637252557,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1331.3675221679632,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 50,
+      "pilot_episodes_per_condition": [
+        25,
+        25
+      ],
+      "bootstrap_replicate": 3,
+      "threshold": 0.05,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.005464056219373435,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.13,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8939178637252557,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1331.3675221679632,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 50,
+      "pilot_episodes_per_condition": [
+        25,
+        25
+      ],
+      "bootstrap_replicate": 3,
+      "threshold": 0.1,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.005464056219373435,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.13,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8939178637252557,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1331.3675221679632,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 50,
+      "pilot_episodes_per_condition": [
+        25,
+        25
+      ],
+      "bootstrap_replicate": 4,
+      "threshold": 0.025,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.012036267178399309,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.003992015968063872,
+        0.85,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.9388688113533709,
+      "onset": [
+        3,
+        4
+      ],
+      "eta": 0.053992015968063876,
+      "U_EB": 1269.5065409823735,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 50,
+      "pilot_episodes_per_condition": [
+        25,
+        25
+      ],
+      "bootstrap_replicate": 4,
+      "threshold": 0.05,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.012036267178399309,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.003992015968063872,
+        0.85,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.9388688113533709,
+      "onset": [
+        3,
+        4
+      ],
+      "eta": 0.053992015968063876,
+      "U_EB": 1269.5065409823735,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 50,
+      "pilot_episodes_per_condition": [
+        25,
+        25
+      ],
+      "bootstrap_replicate": 4,
+      "threshold": 0.1,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.012036267178399309,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.003992015968063872,
+        0.85,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.9388688113533709,
+      "onset": [
+        3,
+        4
+      ],
+      "eta": 0.053992015968063876,
+      "U_EB": 1269.5065409823735,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 50,
+      "pilot_episodes_per_condition": [
+        25,
+        25
+      ],
+      "bootstrap_replicate": 5,
+      "threshold": 0.025,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.014034800274031525,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.5628140703517588,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8763336850153393,
+      "onset": [
+        3,
+        4
+      ],
+      "eta": 0.05,
+      "U_EB": 1278.2698534593703,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 50,
+      "pilot_episodes_per_condition": [
+        25,
+        25
+      ],
+      "bootstrap_replicate": 5,
+      "threshold": 0.05,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.014034800274031525,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.5628140703517588,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8763336850153393,
+      "onset": [
+        3,
+        4
+      ],
+      "eta": 0.05,
+      "U_EB": 1278.2698534593703,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 50,
+      "pilot_episodes_per_condition": [
+        25,
+        25
+      ],
+      "bootstrap_replicate": 5,
+      "threshold": 0.1,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.014034800274031525,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.5628140703517588,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8763336850153393,
+      "onset": [
+        3,
+        4
+      ],
+      "eta": 0.05,
+      "U_EB": 1278.2698534593703,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 50,
+      "pilot_episodes_per_condition": [
+        25,
+        25
+      ],
+      "bootstrap_replicate": 6,
+      "threshold": 0.025,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.006524214318820443,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.064,
+        0.98,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.9322724713349714,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.07000000000000002,
+      "U_EB": 1390.0138833635167,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 50,
+      "pilot_episodes_per_condition": [
+        25,
+        25
+      ],
+      "bootstrap_replicate": 6,
+      "threshold": 0.05,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.006524214318820443,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.064,
+        0.98,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.9322724713349714,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.07000000000000002,
+      "U_EB": 1390.0138833635167,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 50,
+      "pilot_episodes_per_condition": [
+        25,
+        25
+      ],
+      "bootstrap_replicate": 6,
+      "threshold": 0.1,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.006524214318820443,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.064,
+        0.98,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.9322724713349714,
+      "onset": [
+        3
+      ],
+      "eta": 0.134,
+      "U_EB": 1335.1111020684075,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 50,
+      "pilot_episodes_per_condition": [
+        25,
+        25
+      ],
+      "bootstrap_replicate": 7,
+      "threshold": 0.025,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.009429447991507372,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.302,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.826824591177515,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1351.8112885568185,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 50,
+      "pilot_episodes_per_condition": [
+        25,
+        25
+      ],
+      "bootstrap_replicate": 7,
+      "threshold": 0.05,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.009429447991507372,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.302,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.826824591177515,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1351.8112885568185,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 50,
+      "pilot_episodes_per_condition": [
+        25,
+        25
+      ],
+      "bootstrap_replicate": 7,
+      "threshold": 0.1,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.009429447991507372,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.302,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.826824591177515,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1351.8112885568185,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 50,
+      "pilot_episodes_per_condition": [
+        25,
+        25
+      ],
+      "bootstrap_replicate": 8,
+      "threshold": 0.025,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.003717141917773598,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.494,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8194031179268075,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1293.5888318685143,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 50,
+      "pilot_episodes_per_condition": [
+        25,
+        25
+      ],
+      "bootstrap_replicate": 8,
+      "threshold": 0.05,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.003717141917773598,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.494,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8194031179268075,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1293.5888318685143,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 50,
+      "pilot_episodes_per_condition": [
+        25,
+        25
+      ],
+      "bootstrap_replicate": 8,
+      "threshold": 0.1,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.003717141917773598,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.494,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8194031179268075,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1293.5888318685143,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 50,
+      "pilot_episodes_per_condition": [
+        25,
+        25
+      ],
+      "bootstrap_replicate": 9,
+      "threshold": 0.025,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.007773304666791635,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.718,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8710691980088432,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1288.2724810576583,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 50,
+      "pilot_episodes_per_condition": [
+        25,
+        25
+      ],
+      "bootstrap_replicate": 9,
+      "threshold": 0.05,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.007773304666791635,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.718,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8710691980088432,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1288.2724810576583,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 50,
+      "pilot_episodes_per_condition": [
+        25,
+        25
+      ],
+      "bootstrap_replicate": 9,
+      "threshold": 0.1,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.007773304666791635,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.718,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8710691980088432,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1288.2724810576583,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 50,
+      "pilot_episodes_per_condition": [
+        25,
+        25
+      ],
+      "bootstrap_replicate": 10,
+      "threshold": 0.025,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.01666318995612012,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.4427860696517413,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8673541114361649,
+      "onset": [
+        3,
+        4
+      ],
+      "eta": 0.05,
+      "U_EB": 1281.7811378520244,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 50,
+      "pilot_episodes_per_condition": [
+        25,
+        25
+      ],
+      "bootstrap_replicate": 10,
+      "threshold": 0.05,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.01666318995612012,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.4427860696517413,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8673541114361649,
+      "onset": [
+        3,
+        4
+      ],
+      "eta": 0.05,
+      "U_EB": 1281.7811378520244,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 50,
+      "pilot_episodes_per_condition": [
+        25,
+        25
+      ],
+      "bootstrap_replicate": 10,
+      "threshold": 0.1,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.01666318995612012,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.4427860696517413,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8673541114361649,
+      "onset": [
+        3,
+        4
+      ],
+      "eta": 0.05,
+      "U_EB": 1281.7811378520244,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 50,
+      "pilot_episodes_per_condition": [
+        25,
+        25
+      ],
+      "bootstrap_replicate": 11,
+      "threshold": 0.025,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.003457458870751503,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.43687374749499,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8160335597527721,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1307.2911796248388,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 50,
+      "pilot_episodes_per_condition": [
+        25,
+        25
+      ],
+      "bootstrap_replicate": 11,
+      "threshold": 0.05,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.003457458870751503,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.43687374749499,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8160335597527721,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1307.2911796248388,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 50,
+      "pilot_episodes_per_condition": [
+        25,
+        25
+      ],
+      "bootstrap_replicate": 11,
+      "threshold": 0.1,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.003457458870751503,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.43687374749499,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8160335597527721,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1307.2911796248388,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 50,
+      "pilot_episodes_per_condition": [
+        25,
+        25
+      ],
+      "bootstrap_replicate": 12,
+      "threshold": 0.025,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.0038090174538748683,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.374,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.817034334469464,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1330.2931494048382,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 50,
+      "pilot_episodes_per_condition": [
+        25,
+        25
+      ],
+      "bootstrap_replicate": 12,
+      "threshold": 0.05,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.0038090174538748683,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.374,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.817034334469464,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1330.2931494048382,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 50,
+      "pilot_episodes_per_condition": [
+        25,
+        25
+      ],
+      "bootstrap_replicate": 12,
+      "threshold": 0.1,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.0038090174538748683,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.374,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.817034334469464,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1330.2931494048382,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 50,
+      "pilot_episodes_per_condition": [
+        25,
+        25
+      ],
+      "bootstrap_replicate": 13,
+      "threshold": 0.025,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.014340344071388194,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.06,
+        0.9920159680638723,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.93613704214545,
+      "onset": [
+        1,
+        2
+      ],
+      "eta": 0.057984031936127736,
+      "U_EB": 1394.4360459601537,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 50,
+      "pilot_episodes_per_condition": [
+        25,
+        25
+      ],
+      "bootstrap_replicate": 13,
+      "threshold": 0.05,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.014340344071388194,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.06,
+        0.9920159680638723,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.93613704214545,
+      "onset": [
+        1,
+        2
+      ],
+      "eta": 0.057984031936127736,
+      "U_EB": 1394.4360459601537,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 50,
+      "pilot_episodes_per_condition": [
+        25,
+        25
+      ],
+      "bootstrap_replicate": 13,
+      "threshold": 0.1,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.014340344071388194,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.06,
+        0.9920159680638723,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.93613704214545,
+      "onset": [
+        2
+      ],
+      "eta": 0.11798403193612773,
+      "U_EB": 1316.6093386737662,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 50,
+      "pilot_episodes_per_condition": [
+        25,
+        25
+      ],
+      "bootstrap_replicate": 14,
+      "threshold": 0.025,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.006405744808060776,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.658,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.852003726541904,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1295.6435502177878,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 50,
+      "pilot_episodes_per_condition": [
+        25,
+        25
+      ],
+      "bootstrap_replicate": 14,
+      "threshold": 0.05,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.006405744808060776,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.658,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.852003726541904,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1295.6435502177878,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 50,
+      "pilot_episodes_per_condition": [
+        25,
+        25
+      ],
+      "bootstrap_replicate": 14,
+      "threshold": 0.1,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.006405744808060776,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.658,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.852003726541904,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1295.6435502177878,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 50,
+      "pilot_episodes_per_condition": [
+        25,
+        25
+      ],
+      "bootstrap_replicate": 15,
+      "threshold": 0.025,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.012756265827587663,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.034,
+        0.968,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.9471416091296323,
+      "onset": [
+        1,
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1406.746679032452,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 50,
+      "pilot_episodes_per_condition": [
+        25,
+        25
+      ],
+      "bootstrap_replicate": 15,
+      "threshold": 0.05,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.012756265827587663,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.034,
+        0.968,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.9471416091296323,
+      "onset": [
+        2
+      ],
+      "eta": 0.11600000000000003,
+      "U_EB": 1321.5922713294763,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 50,
+      "pilot_episodes_per_condition": [
+        25,
+        25
+      ],
+      "bootstrap_replicate": 15,
+      "threshold": 0.1,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.012756265827587663,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.034,
+        0.968,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.9471416091296323,
+      "onset": [
+        2
+      ],
+      "eta": 0.11600000000000003,
+      "U_EB": 1321.5922713294763,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 50,
+      "pilot_episodes_per_condition": [
+        25,
+        25
+      ],
+      "bootstrap_replicate": 16,
+      "threshold": 0.025,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.009417933395930682,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.6946107784431138,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8630629129654663,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1292.9456205580727,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 50,
+      "pilot_episodes_per_condition": [
+        25,
+        25
+      ],
+      "bootstrap_replicate": 16,
+      "threshold": 0.05,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.009417933395930682,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.6946107784431138,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8630629129654663,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1292.9456205580727,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 50,
+      "pilot_episodes_per_condition": [
+        25,
+        25
+      ],
+      "bootstrap_replicate": 16,
+      "threshold": 0.1,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.009417933395930682,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.6946107784431138,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8630629129654663,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1292.9456205580727,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 50,
+      "pilot_episodes_per_condition": [
+        25,
+        25
+      ],
+      "bootstrap_replicate": 17,
+      "threshold": 0.025,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.014311704295022138,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.52,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8712334759945357,
+      "onset": [
+        3,
+        4
+      ],
+      "eta": 0.05,
+      "U_EB": 1282.663430420946,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 50,
+      "pilot_episodes_per_condition": [
+        25,
+        25
+      ],
+      "bootstrap_replicate": 17,
+      "threshold": 0.05,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.014311704295022138,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.52,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8712334759945357,
+      "onset": [
+        3,
+        4
+      ],
+      "eta": 0.05,
+      "U_EB": 1282.663430420946,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 50,
+      "pilot_episodes_per_condition": [
+        25,
+        25
+      ],
+      "bootstrap_replicate": 17,
+      "threshold": 0.1,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.014311704295022138,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.52,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8712334759945357,
+      "onset": [
+        3,
+        4
+      ],
+      "eta": 0.05,
+      "U_EB": 1282.663430420946,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 50,
+      "pilot_episodes_per_condition": [
+        25,
+        25
+      ],
+      "bootstrap_replicate": 18,
+      "threshold": 0.025,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.0016900453397205822,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.30538922155688625,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8258804544704972,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1331.9907284028095,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 50,
+      "pilot_episodes_per_condition": [
+        25,
+        25
+      ],
+      "bootstrap_replicate": 18,
+      "threshold": 0.05,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.0016900453397205822,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.30538922155688625,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8258804544704972,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1331.9907284028095,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 50,
+      "pilot_episodes_per_condition": [
+        25,
+        25
+      ],
+      "bootstrap_replicate": 18,
+      "threshold": 0.1,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.0016900453397205822,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.30538922155688625,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8258804544704972,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1331.9907284028095,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 50,
+      "pilot_episodes_per_condition": [
+        25,
+        25
+      ],
+      "bootstrap_replicate": 19,
+      "threshold": 0.025,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.010052117705345167,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.056,
+        0.964824120603015,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.9328027288036427,
+      "onset": [
+        2,
+        3,
+        4
+      ],
+      "eta": 0.05,
+      "U_EB": 1353.7040291263736,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 50,
+      "pilot_episodes_per_condition": [
+        25,
+        25
+      ],
+      "bootstrap_replicate": 19,
+      "threshold": 0.05,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.010052117705345167,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.056,
+        0.964824120603015,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.9328027288036427,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.08517587939698497,
+      "U_EB": 1388.8799085233586,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 50,
+      "pilot_episodes_per_condition": [
+        25,
+        25
+      ],
+      "bootstrap_replicate": 19,
+      "threshold": 0.1,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.010052117705345167,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.056,
+        0.964824120603015,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.9328027288036427,
+      "onset": [
+        3
+      ],
+      "eta": 0.14117587939698495,
+      "U_EB": 1345.5846841644404,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 100,
+      "pilot_episodes_per_condition": [
+        50,
+        50
+      ],
+      "bootstrap_replicate": 0,
+      "threshold": 0.025,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.0017365914583205974,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.24224224224224225,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8426954640587687,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1338.9001699971805,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 100,
+      "pilot_episodes_per_condition": [
+        50,
+        50
+      ],
+      "bootstrap_replicate": 0,
+      "threshold": 0.05,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.0017365914583205974,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.24224224224224225,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8426954640587687,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1338.9001699971805,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 100,
+      "pilot_episodes_per_condition": [
+        50,
+        50
+      ],
+      "bootstrap_replicate": 0,
+      "threshold": 0.1,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.0017365914583205974,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.24224224224224225,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8426954640587687,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1338.9001699971805,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 100,
+      "pilot_episodes_per_condition": [
+        50,
+        50
+      ],
+      "bootstrap_replicate": 1,
+      "threshold": 0.025,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.009033077103751055,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.005,
+        0.8095238095238095,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.9249320275293187,
+      "onset": [
+        3,
+        4
+      ],
+      "eta": 0.055,
+      "U_EB": 1271.2038838773778,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 100,
+      "pilot_episodes_per_condition": [
+        50,
+        50
+      ],
+      "bootstrap_replicate": 1,
+      "threshold": 0.05,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.009033077103751055,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.005,
+        0.8095238095238095,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.9249320275293187,
+      "onset": [
+        3,
+        4
+      ],
+      "eta": 0.055,
+      "U_EB": 1271.2038838773778,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 100,
+      "pilot_episodes_per_condition": [
+        50,
+        50
+      ],
+      "bootstrap_replicate": 1,
+      "threshold": 0.1,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.009033077103751055,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.005,
+        0.8095238095238095,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.9249320275293187,
+      "onset": [
+        3,
+        4
+      ],
+      "eta": 0.055,
+      "U_EB": 1271.2038838773778,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 100,
+      "pilot_episodes_per_condition": [
+        50,
+        50
+      ],
+      "bootstrap_replicate": 2,
+      "threshold": 0.025,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.007110123123441455,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.061938061938061936,
+        0.97,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.929840592878663,
+      "onset": [
+        2,
+        3,
+        4
+      ],
+      "eta": 0.05,
+      "U_EB": 1350.3458198243165,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 100,
+      "pilot_episodes_per_condition": [
+        50,
+        50
+      ],
+      "bootstrap_replicate": 2,
+      "threshold": 0.05,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.007110123123441455,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.061938061938061936,
+        0.97,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.929840592878663,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.08000000000000003,
+      "U_EB": 1380.3458198243163,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 100,
+      "pilot_episodes_per_condition": [
+        50,
+        50
+      ],
+      "bootstrap_replicate": 2,
+      "threshold": 0.1,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.007110123123441455,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.061938061938061936,
+        0.97,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.929840592878663,
+      "onset": [
+        3
+      ],
+      "eta": 0.14193806193806197,
+      "U_EB": 1345.3942114397294,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 100,
+      "pilot_episodes_per_condition": [
+        50,
+        50
+      ],
+      "bootstrap_replicate": 3,
+      "threshold": 0.025,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.01474747615201133,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.015,
+        0.965,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.9702544941768059,
+      "onset": [
+        3,
+        4
+      ],
+      "eta": 0.065,
+      "U_EB": 1272.0379881828894,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 100,
+      "pilot_episodes_per_condition": [
+        50,
+        50
+      ],
+      "bootstrap_replicate": 3,
+      "threshold": 0.05,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.01474747615201133,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.015,
+        0.965,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.9702544941768059,
+      "onset": [
+        3
+      ],
+      "eta": 0.10000000000000003,
+      "U_EB": 1307.0379881828894,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 100,
+      "pilot_episodes_per_condition": [
+        50,
+        50
+      ],
+      "bootstrap_replicate": 3,
+      "threshold": 0.1,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.01474747615201133,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.015,
+        0.965,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.9702544941768059,
+      "onset": [
+        3
+      ],
+      "eta": 0.10000000000000003,
+      "U_EB": 1307.0379881828894,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 100,
+      "pilot_episodes_per_condition": [
+        50,
+        50
+      ],
+      "bootstrap_replicate": 4,
+      "threshold": 0.025,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.005626980406897448,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.3306693306693307,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8216801855855399,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1340.4258862151821,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 100,
+      "pilot_episodes_per_condition": [
+        50,
+        50
+      ],
+      "bootstrap_replicate": 4,
+      "threshold": 0.05,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.005626980406897448,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.3306693306693307,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8216801855855399,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1340.4258862151821,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 100,
+      "pilot_episodes_per_condition": [
+        50,
+        50
+      ],
+      "bootstrap_replicate": 4,
+      "threshold": 0.1,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.005626980406897448,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.3306693306693307,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8216801855855399,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1340.4258862151821,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 100,
+      "pilot_episodes_per_condition": [
+        50,
+        50
+      ],
+      "bootstrap_replicate": 5,
+      "threshold": 0.025,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.004398510456085192,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.6816367265469062,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8589298268235388,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1280.0260387522949,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 100,
+      "pilot_episodes_per_condition": [
+        50,
+        50
+      ],
+      "bootstrap_replicate": 5,
+      "threshold": 0.05,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.004398510456085192,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.6816367265469062,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8589298268235388,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1280.0260387522949,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 100,
+      "pilot_episodes_per_condition": [
+        50,
+        50
+      ],
+      "bootstrap_replicate": 5,
+      "threshold": 0.1,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.004398510456085192,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.6816367265469062,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8589298268235388,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1280.0260387522949,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 100,
+      "pilot_episodes_per_condition": [
+        50,
+        50
+      ],
+      "bootstrap_replicate": 6,
+      "threshold": 0.025,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.00794975663934437,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.015984015984015984,
+        0.9325,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.9564705679211575,
+      "onset": [
+        3,
+        4
+      ],
+      "eta": 0.06598401598401599,
+      "U_EB": 1274.9804538364938,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 100,
+      "pilot_episodes_per_condition": [
+        50,
+        50
+      ],
+      "bootstrap_replicate": 6,
+      "threshold": 0.05,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.00794975663934437,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.015984015984015984,
+        0.9325,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.9564705679211575,
+      "onset": [
+        3,
+        4
+      ],
+      "eta": 0.06598401598401599,
+      "U_EB": 1274.9804538364938,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 100,
+      "pilot_episodes_per_condition": [
+        50,
+        50
+      ],
+      "bootstrap_replicate": 6,
+      "threshold": 0.1,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.00794975663934437,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.015984015984015984,
+        0.9325,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.9564705679211575,
+      "onset": [
+        3
+      ],
+      "eta": 0.133484015984016,
+      "U_EB": 1342.4804538364938,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 100,
+      "pilot_episodes_per_condition": [
+        50,
+        50
+      ],
+      "bootstrap_replicate": 7,
+      "threshold": 0.025,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.0030185816969190427,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.37737737737737737,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8170549334419215,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1322.9843092505232,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 100,
+      "pilot_episodes_per_condition": [
+        50,
+        50
+      ],
+      "bootstrap_replicate": 7,
+      "threshold": 0.05,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.0030185816969190427,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.37737737737737737,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8170549334419215,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1322.9843092505232,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 100,
+      "pilot_episodes_per_condition": [
+        50,
+        50
+      ],
+      "bootstrap_replicate": 7,
+      "threshold": 0.1,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.0030185816969190427,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.37737737737737737,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8170549334419215,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1322.9843092505232,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 100,
+      "pilot_episodes_per_condition": [
+        50,
+        50
+      ],
+      "bootstrap_replicate": 8,
+      "threshold": 0.025,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.0012494088922228189,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.342,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8202518659264677,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1324.0507997997897,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 100,
+      "pilot_episodes_per_condition": [
+        50,
+        50
+      ],
+      "bootstrap_replicate": 8,
+      "threshold": 0.05,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.0012494088922228189,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.342,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8202518659264677,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1324.0507997997897,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 100,
+      "pilot_episodes_per_condition": [
+        50,
+        50
+      ],
+      "bootstrap_replicate": 8,
+      "threshold": 0.1,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.0012494088922228189,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.342,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8202518659264677,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1324.0507997997897,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 100,
+      "pilot_episodes_per_condition": [
+        50,
+        50
+      ],
+      "bootstrap_replicate": 9,
+      "threshold": 0.025,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.0035855189391544545,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.538,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8249270036129461,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1299.011437908462,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 100,
+      "pilot_episodes_per_condition": [
+        50,
+        50
+      ],
+      "bootstrap_replicate": 9,
+      "threshold": 0.05,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.0035855189391544545,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.538,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8249270036129461,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1299.011437908462,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 100,
+      "pilot_episodes_per_condition": [
+        50,
+        50
+      ],
+      "bootstrap_replicate": 9,
+      "threshold": 0.1,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.0035855189391544545,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.538,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8249270036129461,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1299.011437908462,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 100,
+      "pilot_episodes_per_condition": [
+        50,
+        50
+      ],
+      "bootstrap_replicate": 10,
+      "threshold": 0.025,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.007497118200574605,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0195,
+        0.9669669669669669,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.9611317154959984,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.0695,
+      "U_EB": 1276.2068397738549,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 100,
+      "pilot_episodes_per_condition": [
+        50,
+        50
+      ],
+      "bootstrap_replicate": 10,
+      "threshold": 0.05,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.007497118200574605,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0195,
+        0.9669669669669669,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.9611317154959984,
+      "onset": [
+        2
+      ],
+      "eta": 0.10253303303303307,
+      "U_EB": 1309.239872806888,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 100,
+      "pilot_episodes_per_condition": [
+        50,
+        50
+      ],
+      "bootstrap_replicate": 10,
+      "threshold": 0.1,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.007497118200574605,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0195,
+        0.9669669669669669,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.9611317154959984,
+      "onset": [
+        2
+      ],
+      "eta": 0.10253303303303307,
+      "U_EB": 1309.239872806888,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 100,
+      "pilot_episodes_per_condition": [
+        50,
+        50
+      ],
+      "bootstrap_replicate": 11,
+      "threshold": 0.025,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.0038950765132904153,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.3913913913913914,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8162590694785474,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1312.0267834503254,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 100,
+      "pilot_episodes_per_condition": [
+        50,
+        50
+      ],
+      "bootstrap_replicate": 11,
+      "threshold": 0.05,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.0038950765132904153,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.3913913913913914,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8162590694785474,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1312.0267834503254,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 100,
+      "pilot_episodes_per_condition": [
+        50,
+        50
+      ],
+      "bootstrap_replicate": 11,
+      "threshold": 0.1,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.0038950765132904153,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.3913913913913914,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8162590694785474,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1312.0267834503254,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 100,
+      "pilot_episodes_per_condition": [
+        50,
+        50
+      ],
+      "bootstrap_replicate": 12,
+      "threshold": 0.025,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.01080787582056862,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.7042957042957043,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8663343086246,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1280.6106241832379,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 100,
+      "pilot_episodes_per_condition": [
+        50,
+        50
+      ],
+      "bootstrap_replicate": 12,
+      "threshold": 0.05,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.01080787582056862,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.7042957042957043,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8663343086246,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1280.6106241832379,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 100,
+      "pilot_episodes_per_condition": [
+        50,
+        50
+      ],
+      "bootstrap_replicate": 12,
+      "threshold": 0.1,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.01080787582056862,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.7042957042957043,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8663343086246,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1280.6106241832379,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 100,
+      "pilot_episodes_per_condition": [
+        50,
+        50
+      ],
+      "bootstrap_replicate": 13,
+      "threshold": 0.025,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.004572929654802541,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.078,
+        0.9975,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.9284462747946266,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05249999999999995,
+      "U_EB": 1351.6024780012099,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 100,
+      "pilot_episodes_per_condition": [
+        50,
+        50
+      ],
+      "bootstrap_replicate": 13,
+      "threshold": 0.05,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.004572929654802541,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.078,
+        0.9975,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.9284462747946266,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05249999999999995,
+      "U_EB": 1351.6024780012099,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 100,
+      "pilot_episodes_per_condition": [
+        50,
+        50
+      ],
+      "bootstrap_replicate": 13,
+      "threshold": 0.1,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.004572929654802541,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.078,
+        0.9975,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.9284462747946266,
+      "onset": [
+        3
+      ],
+      "eta": 0.13049999999999995,
+      "U_EB": 1323.00289419911,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 100,
+      "pilot_episodes_per_condition": [
+        50,
+        50
+      ],
+      "bootstrap_replicate": 14,
+      "threshold": 0.025,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.005143367392676227,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.144,
+        0.995,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8836785346990941,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05500000000000001,
+      "U_EB": 1350.995894848888,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 100,
+      "pilot_episodes_per_condition": [
+        50,
+        50
+      ],
+      "bootstrap_replicate": 14,
+      "threshold": 0.05,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.005143367392676227,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.144,
+        0.995,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8836785346990941,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05500000000000001,
+      "U_EB": 1350.995894848888,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 100,
+      "pilot_episodes_per_condition": [
+        50,
+        50
+      ],
+      "bootstrap_replicate": 14,
+      "threshold": 0.1,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.005143367392676227,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.144,
+        0.995,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8836785346990941,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05500000000000001,
+      "U_EB": 1350.995894848888,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 100,
+      "pilot_episodes_per_condition": [
+        50,
+        50
+      ],
+      "bootstrap_replicate": 15,
+      "threshold": 0.025,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.005886568256786874,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.723,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8728085633634793,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1284.2030601026252,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 100,
+      "pilot_episodes_per_condition": [
+        50,
+        50
+      ],
+      "bootstrap_replicate": 15,
+      "threshold": 0.05,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.005886568256786874,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.723,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8728085633634793,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1284.2030601026252,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 100,
+      "pilot_episodes_per_condition": [
+        50,
+        50
+      ],
+      "bootstrap_replicate": 15,
+      "threshold": 0.1,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.005886568256786874,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.723,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8728085633634793,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05,
+      "U_EB": 1284.2030601026252,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 100,
+      "pilot_episodes_per_condition": [
+        50,
+        50
+      ],
+      "bootstrap_replicate": 16,
+      "threshold": 0.025,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.015944945386477886,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.003,
+        0.6608040201005025,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8889602014122986,
+      "onset": [
+        3,
+        4
+      ],
+      "eta": 0.053000000000000005,
+      "U_EB": 1278.5995218858588,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 100,
+      "pilot_episodes_per_condition": [
+        50,
+        50
+      ],
+      "bootstrap_replicate": 16,
+      "threshold": 0.05,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.015944945386477886,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.003,
+        0.6608040201005025,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8889602014122986,
+      "onset": [
+        3,
+        4
+      ],
+      "eta": 0.053000000000000005,
+      "U_EB": 1278.5995218858588,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 100,
+      "pilot_episodes_per_condition": [
+        50,
+        50
+      ],
+      "bootstrap_replicate": 16,
+      "threshold": 0.1,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.015944945386477886,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.003,
+        0.6608040201005025,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.8889602014122986,
+      "onset": [
+        3,
+        4
+      ],
+      "eta": 0.053000000000000005,
+      "U_EB": 1278.5995218858588,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 100,
+      "pilot_episodes_per_condition": [
+        50,
+        50
+      ],
+      "bootstrap_replicate": 17,
+      "threshold": 0.025,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.012169716273035298,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0375,
+        0.987,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.954029338472564,
+      "onset": [
+        1,
+        2
+      ],
+      "eta": 0.06300000000000001,
+      "U_EB": 1446.211266527736,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 100,
+      "pilot_episodes_per_condition": [
+        50,
+        50
+      ],
+      "bootstrap_replicate": 17,
+      "threshold": 0.05,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.012169716273035298,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0375,
+        0.987,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.954029338472564,
+      "onset": [
+        2
+      ],
+      "eta": 0.1005,
+      "U_EB": 1303.6773633175696,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 100,
+      "pilot_episodes_per_condition": [
+        50,
+        50
+      ],
+      "bootstrap_replicate": 17,
+      "threshold": 0.1,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.012169716273035298,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0375,
+        0.987,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.954029338472564,
+      "onset": [
+        2
+      ],
+      "eta": 0.1005,
+      "U_EB": 1303.6773633175696,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 100,
+      "pilot_episodes_per_condition": [
+        50,
+        50
+      ],
+      "bootstrap_replicate": 18,
+      "threshold": 0.025,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.008477777583258532,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.068,
+        0.98,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.9290550098623259,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.07000000000000002,
+      "U_EB": 1390.0083080067877,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 100,
+      "pilot_episodes_per_condition": [
+        50,
+        50
+      ],
+      "bootstrap_replicate": 18,
+      "threshold": 0.05,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.008477777583258532,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.068,
+        0.98,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.9290550098623259,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.07000000000000002,
+      "U_EB": 1390.0083080067877,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 100,
+      "pilot_episodes_per_condition": [
+        50,
+        50
+      ],
+      "bootstrap_replicate": 18,
+      "threshold": 0.1,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.008477777583258532,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.068,
+        0.98,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.9290550098623259,
+      "onset": [
+        3
+      ],
+      "eta": 0.138,
+      "U_EB": 1339.4201123383446,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 100,
+      "pilot_episodes_per_condition": [
+        50,
+        50
+      ],
+      "bootstrap_replicate": 19,
+      "threshold": 0.025,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.006846929362842004,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.18118118118118118,
+        0.9950248756218906,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.864841718050861,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05497512437810943,
+      "U_EB": 1347.0998690028225,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 100,
+      "pilot_episodes_per_condition": [
+        50,
+        50
+      ],
+      "bootstrap_replicate": 19,
+      "threshold": 0.05,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.006846929362842004,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.18118118118118118,
+        0.9950248756218906,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.864841718050861,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05497512437810943,
+      "U_EB": 1347.0998690028225,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    },
+    {
+      "pilot_episodes_total": 100,
+      "pilot_episodes_per_condition": [
+        50,
+        50
+      ],
+      "bootstrap_replicate": 19,
+      "threshold": 0.1,
+      "window": 40,
+      "window_matches_full_100_episode_pilot": true,
+      "edge_mae_vs_full_pilot": 0.006846929362842004,
+      "risk_level_rates": [
+        0.0,
+        0.0,
+        0.0,
+        0.18118118118118118,
+        0.9950248756218906,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "r2": 0.864841718050861,
+      "onset": [
+        2,
+        3
+      ],
+      "eta": 0.05497512437810943,
+      "U_EB": 1347.0998690028225,
+      "J_A_reference": 164.49666666666667,
+      "J_B_reference": 58.74,
+      "point_undercoverage": false
+    }
+  ]
+}
