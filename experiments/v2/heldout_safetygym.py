@@ -42,11 +42,11 @@ def _pilot_shard(task):
 
 
 def _evaluation_shard(task):
-    env_name, checkpoint_dir, lam, n, seed = task
+    env_name, checkpoint_dir, lam, sigma, n, seed = task
     import safety_gymnasium
     import safetygym2 as worker_sg
     worker_sg.ENVNAME, worker_sg.DIR = env_name, checkpoint_dir
-    policy = worker_sg.Policy(lam, 0.0)
+    policy = worker_sg.Policy(lam, sigma)
     env = safety_gymnasium.make(env_name)
     rng = np.random.default_rng(seed)
     obs_all = None
@@ -69,10 +69,10 @@ def _evaluation_shard(task):
     return obs_all, costs_all.sum(1), lengths
 
 
-def collect_truth(env_name: str, checkpoint_dir: Path, lam: float, n: int, seed: int):
+def collect_truth(env_name: str, checkpoint_dir: Path, lam: float, n: int, seed: int, sigma: float = 0.0):
     import safety_gymnasium
     sg.ENVNAME, sg.DIR = env_name, str(checkpoint_dir)
-    policy = sg.Policy(lam, 0.0)
+    policy = sg.Policy(lam, sigma)
     env = safety_gymnasium.make(env_name)
     rng = np.random.default_rng(seed)
     costs, lengths = np.zeros(n), np.zeros(n, dtype=np.int32)
@@ -93,8 +93,8 @@ def collect_truth(env_name: str, checkpoint_dir: Path, lam: float, n: int, seed:
 
 
 def _truth_shard(task):
-    env_name, checkpoint_dir, lam, n, seed = task
-    return collect_truth(env_name, Path(checkpoint_dir), lam, n, seed)
+    env_name, checkpoint_dir, lam, sigma, n, seed = task
+    return collect_truth(env_name, Path(checkpoint_dir), lam, n, seed, sigma)
 
 
 def _chunks(total, workers=10):
@@ -131,15 +131,15 @@ def fit_pilot_alphabet(pilot, ids0, ids1):
     return fit_alphabet((obs, costs, obs, costs), np.array([0]), np.array([0]))
 
 
-def collect_evaluation_parallel(env_name, checkpoint_dir, lam, n, seed):
-    jobs = [(env_name, str(checkpoint_dir), lam, size, seed + i * 10000)
+def collect_evaluation_parallel(env_name, checkpoint_dir, lam, n, seed, sigma=0.0):
+    jobs = [(env_name, str(checkpoint_dir), lam, sigma, size, seed + i * 10000)
             for i, size in enumerate(_chunks(n))]
     shards = _parallel_map(_evaluation_shard, jobs)
     return tuple(np.concatenate([x[k] for x in shards]) for k in range(3))
 
 
-def collect_truth_parallel(env_name, checkpoint_dir, lam, n, seed):
-    jobs = [(env_name, str(checkpoint_dir), lam, size, seed + i * 10000)
+def collect_truth_parallel(env_name, checkpoint_dir, lam, n, seed, sigma=0.0):
+    jobs = [(env_name, str(checkpoint_dir), lam, sigma, size, seed + i * 10000)
             for i, size in enumerate(_chunks(n))]
     shards = _parallel_map(_truth_shard, jobs)
     return tuple(np.concatenate([x[k] for x in shards]) for k in range(2))

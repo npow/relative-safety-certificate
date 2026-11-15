@@ -49,3 +49,10 @@ The public `artifacts/pg1s3/` directory contains the seed-3 baseline (`lam5.0`) 
 
     python experiments/v2/heldout_safetygym.py --checkpoint-dir artifacts/pg1s3 --seed 2026111515 --out experiments/v2/revision/heldout-pg1-seed3.json --raw-out experiments/v2/revision/heldout-pg1-seed3.npz
 
+
+## Round-two seed-3 analysis
+
+`experiments/v2/heldout_noisy_baselines.py` reuses the archived seed-3 pilot and shared baseline pools, then evaluates the four Gaussian-noise candidates. Each candidate gets a separate certificate pool (400 episodes) and independent truth pool (300 episodes). It reports both the frozen pilot-selected bound and the robust all-threshold bound. Reproduce with:
+
+    python experiments/v2/heldout_noisy_baselines.py --checkpoint-dir artifacts/pg1s3
+

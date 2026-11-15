@@ -154,4 +154,21 @@ chk("fresh seed pilot onset counts at size 50", sorted([sum(r["pilot_total"] == 
 raw3 = np.load(os.path.join(REV, "heldout-pg1-seed3.npz"))
 chk("fresh seed raw pilot sample count", (raw3["pilot_sigma0_observations"].shape[0], raw3["pilot_sigma15_observations"].shape[0]), (50, 50))
 chk("fresh seed certificate occupancy row sums", (int(raw3["a_certificate_counts"].sum(1).min()), int(raw3["a_certificate_counts"].sum(1).max()), int(raw3["b_certificate_counts"].sum(1).min()), int(raw3["b_certificate_counts"].sum(1).max())), (1000, 1000, 1000, 1000))
+# ---------------- round-two held-out noise candidates and robust default ----------------
+hn = loadrev("heldout-pg1-seed3-noisy.json")
+noisy = hn["results"]
+chk("seed-3 candidate count and denominators", (len(noisy), hn["certificate_episodes_per_candidate"], hn["truth_episodes_per_candidate"]), (5, 400, 300))
+chk("seed-3 candidate identities", [(r["candidate"], r["sigma"]) for r in noisy], [("trained lambda=0.1 policy", None), ("lambda=5 baseline with Gaussian action noise", 0.1), ("lambda=5 baseline with Gaussian action noise", 0.3), ("lambda=5 baseline with Gaussian action noise", 0.6), ("lambda=5 baseline with Gaussian action noise", 1.0)])
+chk("seed-3 reference means", [rr(r["candidate_reference_mean"], 2) for r in noisy], [70.96, 39.85, 41.41, 40.53, 41.98])
+chk("seed-3 pilot-selected bounds", [rr(r["pilot_selected_eb_upper_cost"], 2) for r in noisy], [273.80, 233.24, 223.08, 224.03, 222.85])
+chk("seed-3 all-threshold bounds", [rr(r["all_threshold_eb_upper_cost"], 2) for r in noisy], [499.97, 315.65, 340.91, 354.39, 288.04])
+chk("seed-3 bounds exceed reference intervals", all(r["pilot_selected_covers_candidate_reference_ci"] and r["all_threshold_covers_candidate_reference_ci"] for r in noisy), True)
+chk("seed-3 all-threshold median looseness", (rr(np.median([r["pilot_selected_eb_upper_cost"] for r in noisy]), 2), rr(np.median([r["all_threshold_eb_upper_cost"] for r in noisy]), 2)), (224.03, 340.91))
+raw_noisy = np.load(os.path.join(REV, "heldout-pg1-seed3-noisy.npz"))
+chk("seed-3 noisy raw truth denominators", [len(raw_noisy[f"sigma_{sig:g}_truth_costs"]) for sig in (0.1, 0.3, 0.6, 1.0)], [300] * 4)
+chk("seed-3 noisy raw certificate occupancy sums", all(np.all(raw_noisy[f"sigma_{sig:g}_certificate_counts"].sum(1) == 1000) for sig in (0.1, 0.3, 0.6, 1.0)), True)
+chk("robust onset procedure in paper", all(x in tex for x in ("A robust default for onset selection", "use all thresholds", "does not establish that the true cost rise is contained")), True)
+chk("seed-3 comparison table in paper", all(x in tex for x in ("tab:seed3_noisy", "315.65", "340.91", "354.39", "288.04")), True)
+for phrase in ("all-threshold bounds were 288--500", "looser than pilot-selected bounds"):
+    chk("round-two abstract contains: " + phrase, phrase in ab, True)
 sys.exit(0 if ok else 1)

@@ -1,0 +1,279 @@
+{
+  "task": "SafetyPointGoal1-v0",
+  "training_seed": 3,
+  "selection_rule": "Frozen baseline-pilot window scan, seven quantile edges, onset threshold 0.05 and residual-rise eta+0.05.",
+  "collection_seed": 2026111515,
+  "certificate_episodes_per_candidate": 400,
+  "truth_episodes_per_candidate": 300,
+  "baseline_reference_episodes_shared": 300,
+  "baseline_reference_mean_shared": 33.76,
+  "baseline_reference_95ci_shared": [
+    25.1365,
+    43.74333333333333
+  ],
+  "baseline_certificate_episodes_shared": 400,
+  "pilot_selected_bound_is_total_candidate_cost_upper": true,
+  "all_threshold_bound_is_total_candidate_cost_upper": true,
+  "all_threshold_rule": "Use all seven onset thresholds with eta=0; this requires only nondecreasing cost in the risk level and avoids pilot onset selection.",
+  "results": [
+    {
+      "candidate": "trained lambda=0.1 policy",
+      "sigma": null,
+      "certificate_episodes": 400,
+      "truth_episodes": 300,
+      "certificate_seed_start": 2026113515,
+      "truth_seed_start": 2026115515,
+      "baseline_reference_mean_shared": 33.76,
+      "baseline_reference_95ci_shared": [
+        25.1365,
+        43.74333333333333
+      ],
+      "candidate_reference_mean": 70.96,
+      "candidate_reference_se": 11.499483542278341,
+      "candidate_reference_95ci_bootstrap": [
+        49.46966666666667,
+        94.23408333333332
+      ],
+      "excess_reference_mean": 37.199999999999996,
+      "pilot_selected_onset": [
+        3,
+        4
+      ],
+      "pilot_selected_eta": 0.05632911392405067,
+      "pilot_selected_eb_upper_cost": 273.797230138348,
+      "pilot_selected_upper_minus_candidate_ci_hi": 179.5631468050147,
+      "pilot_selected_covers_candidate_mean": true,
+      "pilot_selected_covers_candidate_reference_ci": true,
+      "all_threshold_onset": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "all_threshold_eta": 0.0,
+      "all_threshold_eb_upper_cost": 499.96980535620395,
+      "all_threshold_upper_minus_candidate_ci_hi": 405.7357220228706,
+      "all_threshold_covers_candidate_mean": true,
+      "all_threshold_covers_candidate_reference_ci": true,
+      "certificate_early_terminations": 0,
+      "truth_early_terminations": 0,
+      "baseline_pool_shared_across_candidates": true,
+      "truth_seeds_disjoint_from_certificate": true,
+      "excess_reference_95ci_bootstrap": [
+        13.401749999999996,
+        62.36083333333331
+      ]
+    },
+    {
+      "sigma": 0.1,
+      "certificate_episodes": 400,
+      "truth_episodes": 300,
+      "certificate_seed_start": 2026121515,
+      "truth_seed_start": 2026131515,
+      "baseline_reference_mean_shared": 33.76,
+      "baseline_reference_95ci_shared": [
+        25.1365,
+        43.74333333333333
+      ],
+      "candidate_reference_mean": 39.85333333333333,
+      "candidate_reference_se": 6.181498220714308,
+      "candidate_reference_95ci_bootstrap": [
+        28.619666666666667,
+        52.64675
+      ],
+      "excess_reference_mean": 6.093333333333334,
+      "excess_reference_95ci_bootstrap": [
+        -9.123999999999993,
+        21.729999999999997
+      ],
+      "pilot_selected_onset": [
+        3,
+        4
+      ],
+      "pilot_selected_eta": 0.05632911392405067,
+      "pilot_selected_eb_upper_cost": 233.23908868573102,
+      "pilot_selected_upper_minus_candidate_ci_hi": 180.59233868573102,
+      "pilot_selected_covers_candidate_mean": true,
+      "pilot_selected_covers_candidate_reference_ci": true,
+      "all_threshold_onset": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "all_threshold_eta": 0.0,
+      "all_threshold_eb_upper_cost": 315.6488395347492,
+      "all_threshold_upper_minus_candidate_ci_hi": 263.0020895347492,
+      "all_threshold_covers_candidate_mean": true,
+      "all_threshold_covers_candidate_reference_ci": true,
+      "certificate_early_terminations": 0,
+      "truth_early_terminations": 0,
+      "baseline_pool_shared_across_candidates": true,
+      "truth_seeds_disjoint_from_certificate": true,
+      "candidate": "lambda=5 baseline with Gaussian action noise"
+    },
+    {
+      "sigma": 0.3,
+      "certificate_episodes": 400,
+      "truth_episodes": 300,
+      "certificate_seed_start": 2026123515,
+      "truth_seed_start": 2026133515,
+      "baseline_reference_mean_shared": 33.76,
+      "baseline_reference_95ci_shared": [
+        25.1365,
+        43.74333333333333
+      ],
+      "candidate_reference_mean": 41.406666666666666,
+      "candidate_reference_se": 5.462800506331956,
+      "candidate_reference_95ci_bootstrap": [
+        31.536666666666665,
+        53.140249999999995
+      ],
+      "excess_reference_mean": 7.646666666666668,
+      "excess_reference_95ci_bootstrap": [
+        -6.713416666666665,
+        22.193416666666668
+      ],
+      "pilot_selected_onset": [
+        3,
+        4
+      ],
+      "pilot_selected_eta": 0.05632911392405067,
+      "pilot_selected_eb_upper_cost": 223.08146798681634,
+      "pilot_selected_upper_minus_candidate_ci_hi": 169.94121798681635,
+      "pilot_selected_covers_candidate_mean": true,
+      "pilot_selected_covers_candidate_reference_ci": true,
+      "all_threshold_onset": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "all_threshold_eta": 0.0,
+      "all_threshold_eb_upper_cost": 340.9051345848434,
+      "all_threshold_upper_minus_candidate_ci_hi": 287.7648845848434,
+      "all_threshold_covers_candidate_mean": true,
+      "all_threshold_covers_candidate_reference_ci": true,
+      "certificate_early_terminations": 0,
+      "truth_early_terminations": 0,
+      "baseline_pool_shared_across_candidates": true,
+      "truth_seeds_disjoint_from_certificate": true,
+      "candidate": "lambda=5 baseline with Gaussian action noise"
+    },
+    {
+      "sigma": 0.6,
+      "certificate_episodes": 400,
+      "truth_episodes": 300,
+      "certificate_seed_start": 2026125515,
+      "truth_seed_start": 2026135515,
+      "baseline_reference_mean_shared": 33.76,
+      "baseline_reference_95ci_shared": [
+        25.1365,
+        43.74333333333333
+      ],
+      "candidate_reference_mean": 40.53333333333333,
+      "candidate_reference_se": 4.812431257864212,
+      "candidate_reference_95ci_bootstrap": [
+        31.616583333333335,
+        50.376749999999994
+      ],
+      "excess_reference_mean": 6.773333333333333,
+      "excess_reference_95ci_bootstrap": [
+        -6.859999999999999,
+        19.57741666666666
+      ],
+      "pilot_selected_onset": [
+        3,
+        4
+      ],
+      "pilot_selected_eta": 0.05632911392405067,
+      "pilot_selected_eb_upper_cost": 224.0335406928565,
+      "pilot_selected_upper_minus_candidate_ci_hi": 173.6567906928565,
+      "pilot_selected_covers_candidate_mean": true,
+      "pilot_selected_covers_candidate_reference_ci": true,
+      "all_threshold_onset": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "all_threshold_eta": 0.0,
+      "all_threshold_eb_upper_cost": 354.3949219327179,
+      "all_threshold_upper_minus_candidate_ci_hi": 304.0181719327179,
+      "all_threshold_covers_candidate_mean": true,
+      "all_threshold_covers_candidate_reference_ci": true,
+      "certificate_early_terminations": 0,
+      "truth_early_terminations": 0,
+      "baseline_pool_shared_across_candidates": true,
+      "truth_seeds_disjoint_from_certificate": true,
+      "candidate": "lambda=5 baseline with Gaussian action noise"
+    },
+    {
+      "sigma": 1.0,
+      "certificate_episodes": 400,
+      "truth_episodes": 300,
+      "certificate_seed_start": 2026127515,
+      "truth_seed_start": 2026137515,
+      "baseline_reference_mean_shared": 33.76,
+      "baseline_reference_95ci_shared": [
+        25.1365,
+        43.74333333333333
+      ],
+      "candidate_reference_mean": 41.97666666666667,
+      "candidate_reference_se": 4.696174629432988,
+      "candidate_reference_95ci_bootstrap": [
+        33.12991666666667,
+        51.95
+      ],
+      "excess_reference_mean": 8.216666666666669,
+      "excess_reference_95ci_bootstrap": [
+        -4.7942499999999955,
+        21.610166666666668
+      ],
+      "pilot_selected_onset": [
+        3,
+        4
+      ],
+      "pilot_selected_eta": 0.05632911392405067,
+      "pilot_selected_eb_upper_cost": 222.85224296917096,
+      "pilot_selected_upper_minus_candidate_ci_hi": 170.90224296917097,
+      "pilot_selected_covers_candidate_mean": true,
+      "pilot_selected_covers_candidate_reference_ci": true,
+      "all_threshold_onset": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "all_threshold_eta": 0.0,
+      "all_threshold_eb_upper_cost": 288.04194174342956,
+      "all_threshold_upper_minus_candidate_ci_hi": 236.09194174342957,
+      "all_threshold_covers_candidate_mean": true,
+      "all_threshold_covers_candidate_reference_ci": true,
+      "certificate_early_terminations": 0,
+      "truth_early_terminations": 0,
+      "baseline_pool_shared_across_candidates": true,
+      "truth_seeds_disjoint_from_certificate": true,
+      "candidate": "lambda=5 baseline with Gaussian action noise"
+    }
+  ],
+  "candidate_policies": [
+    "lambda=0.1 trained policy",
+    "lambda=5 baseline with Gaussian action noise; no additional training"
+  ]
+}
